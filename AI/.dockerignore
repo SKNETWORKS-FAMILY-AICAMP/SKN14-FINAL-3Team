@@ -1,0 +1,19 @@
+# Ignore everything
+**
+
+# Allow necessary files and directories
+!/src
+!/run_server.py
+!/requirements.txt
+!/requirementsv2.txt
+!/src/config.py
+!/src/constants.py
+!/src/intent_router.py
+!/src/main.py
+!/src/orchestrator.py
+!/src/api/router.py
+!/src/langgraph/langgraph_rag_new.py
+!/src/langgraph/langgraph_rag.py
+!/src/rag/document_loader.py
+!/src/rag/vector_store.py
+!/src/slm/slm.py

@@ -1,0 +1,33 @@
+# .dockerignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual Environment (제일 중요!)
+.venv/
+venv/
+env/
+.env
+
+# Git
+.git/
+.gitignore
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 다운로드한 모델이나 데이터 (만약 있다면)
+*.bin
+*.safetensors
+*.pth
+data/
+static/pdf/
