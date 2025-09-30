@@ -468,9 +468,9 @@ KB FinAIssist의 핵심 sLLM은 우수한 한국어 성능과 상업적 활용 �
 
 
 ---
-## 🏠 총 시스템 구성도
+## 🏠 총 시스템 흐름도
 
-![시스템 구성도](images/system/all_system_flow.png)
+![시스템 흐름도](images/system/all_system_flow.png)
 
 ### 구성 요소
 
@@ -503,6 +503,10 @@ KB FinAIssist의 핵심 sLLM은 우수한 한국어 성능과 상업적 활용 �
 * RunPod
     * sLLM 실행 환경 제공 (대규모 언어모델 추론)
 
+
+## 🏠 시스템 구조도
+
+![시스템 흐름도](images/system/system_architecture.png)
 
 
 
