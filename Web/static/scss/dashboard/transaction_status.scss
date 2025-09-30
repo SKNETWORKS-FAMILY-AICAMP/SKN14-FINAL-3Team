@@ -1,0 +1,138 @@
+@import '../base';
+
+// Transaction Status Widget Styles
+.transaction-status-widget {
+    border-radius: ptr(10px);
+    padding: ptr(10px);
+    background-color: $kb-background-gray;
+    
+    .transaction-status-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: ptr(10px);
+        
+        .header-left {
+            padding-left: ptr(5px);
+            display: flex;
+            align-items: center;
+            gap: ptr(5px);
+            
+            .header-icon {
+                height: ptr(14px);
+                border: ptr(2px) solid $kb-dark;
+            }
+            
+            .header-title {
+                font-size: ptr(12px);
+                font-weight: 600;
+                color: $kb-dark;
+            }
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: ptr(10px);
+            
+            .last-update {
+                font-size: ptr(10px);
+                color: $kb-text-dark;
+            }
+            
+            .refresh-btn {
+                width: ptr(20px);
+                height: ptr(20px);
+                border: none;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                background: $bg-light;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    background: $kb-yellow;
+                }
+                
+                &:active {
+                    transform: scale(0.95);
+                }
+                
+                i {
+                    font-size: ptr(12px);
+                }
+            }
+        }
+    }
+    
+    .transaction-status-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: ptr(8px);
+        
+        .transaction-item {
+            padding: ptr(5px) ptr(10px);
+            border-radius: ptr(6px);
+            background-color: $bg-light;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            
+            .transaction-label {
+                font-size: ptr(9px);
+                color: $kb-gray;
+                margin-bottom: ptr(4px);
+            }
+            
+            .transaction-main-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                
+                .transaction-rate {
+                    font-size: ptr(12px);
+                    font-weight: 700;
+                    color: $kb-dark;
+                    line-height: 1;
+                }
+                
+                .transaction-change {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    gap: ptr(5px);
+                    
+                    .change-value {
+                        font-size: ptr(10px);
+                        font-weight: 600;
+                        line-height: 1;
+                        
+                        &.positive {
+                            color: $positive;
+                        }
+                        
+                        &.negative {
+                            color: $danger;
+                        }
+                    }
+                    
+                    .change-percent {
+                        font-size: ptr(10px);
+                        font-weight: 500;
+                        line-height: 1;
+                        
+                        &.positive {
+                            color: $positive;
+                        }
+                        
+                        &.negative {
+                            color: $danger;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

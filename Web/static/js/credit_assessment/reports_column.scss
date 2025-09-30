@@ -1,0 +1,153 @@
+@import '../base';
+
+// 네 번째 컬럼 - 보고서 목록
+.fourth_column {
+    grid-column: 4;
+    min-height: 0;
+    padding: ptr(20px);
+    display: flex;
+    flex-direction: column;
+    gap: ptr(10px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+
+    .reports_header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: ptr(10px);
+
+        .reports_title {
+            font-size: ptr(14px);
+            font-weight: 600;
+            color: $kb-dark;
+        }
+
+        .report_count {
+            font-size: ptr(12px);
+            color: $kb-text-light;
+        }
+    }
+
+    .report_upload_section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: ptr(8px);
+        padding: ptr(12px);
+        border: 1px dashed $kb-border;
+        border-radius: ptr(8px);
+        background: $kb-background-gray;
+        cursor: pointer;
+        transition: background 0.2s ease;
+        margin-bottom: ptr(10px);
+
+        &:hover {
+            background: lighten($kb-background-gray, 2%);
+            border-color: $kb-yellow;
+        }
+
+        .upload_icon {
+            font-size: ptr(16px);
+            color: $kb-yellow;
+        }
+
+        .upload_text {
+            font-size: ptr(12px);
+            font-weight: 500;
+            color: $kb-text-dark;
+        }
+    }
+
+    #unified_reports_list {
+        display: flex;
+        flex-direction: column;
+        gap: ptr(10px);
+
+        .report_item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: ptr(10px);
+            background: white;
+            border: 1px solid $kb-border;
+            border-radius: ptr(6px);
+            cursor: pointer;
+            transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+                transform: translateY(-2px);
+            }
+
+            .report_content {
+                display: flex;
+                flex-direction: column;
+                gap: ptr(4px);
+
+                .report_header {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(8px);
+                }
+
+                .report_thumbnail {
+                    width: ptr(24px);
+                    height: ptr(24px);
+                    background: #fdeceb;
+                    color: #c62828;
+                    @include flex-center;
+                    border-radius: ptr(4px);
+                    font-size: ptr(14px);
+                }
+
+                .report_name {
+                    font-size: ptr(12px);
+                    font-weight: 600;
+                    color: $kb-text-dark;
+                }
+
+                .report_meta {
+                    font-size: ptr(10px);
+                    color: $kb-text-light;
+                }
+            }
+
+            .report_actions {
+                display: flex;
+                gap: ptr(8px);
+
+                .action_icon {
+                    font-size: ptr(16px);
+                    color: $kb-text-light;
+                    cursor: pointer;
+                    transition: color 0.2s ease;
+
+                    &:hover {
+                        color: $kb-yellow;
+                    }
+                }
+            }
+        }
+    }
+
+    .no_reports_message {
+        @include flex-center;
+        flex-direction: column;
+        text-align: center;
+        color: $kb-text-light;
+        padding: ptr(40px) 0;
+
+        .empty_message {
+            i {
+                font-size: ptr(32px);
+                margin-bottom: ptr(10px);
+            }
+            p {
+                font-size: ptr(12px);
+                line-height: 1.5;
+            }
+        }
+    }
+}

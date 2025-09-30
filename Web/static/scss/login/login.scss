@@ -1,0 +1,432 @@
+// KB국민은행 직원 업무시스템 - 로그인 페이지 전용 스타일
+
+@import '../base';
+
+.login-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+
+  .login-main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 0;
+
+      .login-content-wrapper {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: ptr(25px);
+        width: 100%;
+        max-width: ptr(1000px);
+
+        // 왼쪽 정보 섹션
+        .info-section {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: ptr(18px);
+          text-align: left;
+          color: $kb-dark;
+          min-height: 0;
+          overflow-y: auto;
+
+        .info-content {
+          .main-title {
+            font-size: ptr(20px);
+            font-weight: 700;
+            margin-bottom: ptr(10px);
+            line-height: 1.2;
+
+            .highlight {
+              color: $kb-yellow;
+            }
+          }
+
+          .description-wrapper {
+            display: flex;
+            flex-direction: column;
+            margin-top: ptr(30px);
+            margin-bottom: ptr(30px);
+
+            .description {
+              font-size: ptr(12px);
+              color: $text-light-secondary;
+            }
+          }
+
+          .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: ptr(10px);
+            padding: ptr(10px);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: ptr(1px) solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: ptr(10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+
+            .feature-icon {
+              width: ptr(30px);
+              height: ptr(30px);
+              margin: ptr(5px) auto ptr(8px);
+              color: $kb-yellow;
+              font-size: ptr(18px);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            h3 {
+              font-size: ptr(12px);
+              font-weight: 600;
+              margin-bottom: ptr(3px);
+              color: $kb-gray;
+            }
+
+            p {
+              font-size: ptr(10px);
+              color: $text-light-secondary;
+            }
+          }
+        }
+      }
+
+      // 오른쪽 로그인 섹션
+      .login-section {
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: ptr(18px);
+        min-height: 0;
+        overflow-y: auto;
+
+        .login-container {
+          width: ptr(350px);
+          height: 100%;
+          border-radius: ptr(10px);
+          box-shadow: 0 ptr(6px) ptr(12px) rgba(0, 0, 0, 0.15);
+          padding: ptr(28px);
+          border: ptr(1px) solid $kb-input-border;
+
+          // 로그인 헤더 (로고 + 제목)
+          .login-header {
+            text-align: center;
+            margin-top: ptr(14px);
+            margin-bottom: ptr(14px);
+
+            .kb-logo-small {
+              height: ptr(30px);
+              width: auto;
+              object-fit: contain;
+              margin: 0 auto ptr(8px);
+              display: block;
+            }
+
+            p {
+              font-size: ptr(12px);
+              color: $text-secondary;
+              margin-bottom: 0;
+              margin-top: 0;
+            }
+          }
+
+          // 네비게이션 탭
+          .nav-tabs {
+            border-bottom: 1px solid $border-color;
+            margin-bottom: ptr(30px);
+
+            .nav-item {
+              @include flex-center;
+              flex-grow: 1;
+              text-align: center;
+
+              .nav-link {
+                color: $text-secondary;
+                border: none;
+                border-bottom: ptr(2px) solid transparent;
+                padding: ptr(8px) ptr(8px);
+                font-weight: 600;
+                transition: all 0.3s ease;
+                font-size: ptr(12px);
+
+                &:hover {
+                  color: $text-dark;
+                  border-color: $kb-light-gray;
+                }
+
+                &.active {
+                  color: $text-dark;
+                  background-color: transparent;
+                  border-color: $kb-yellow;
+                  font-weight: 700;
+                }
+              }
+            }
+          }
+
+          // 로그인 폼
+          .login-form {
+            
+            .mb-3-form-wrapper {
+              margin-bottom: ptr(20px) !important;
+
+              .form-row {
+                display: flex;
+                align-items: center;
+                gap: ptr(12px);
+
+                .form-label {
+                  font-weight: 400;
+                  color: $text-dark;
+                  margin-bottom: 0;
+                  font-size: ptr(12px);
+                  min-width: ptr(55px);
+                  flex-shrink: 0;
+                }
+
+                .form-control {
+                  flex: 1;
+                }
+
+                .input-with-icon {
+                  flex: 1;
+                  position: relative;
+
+                  .form-control {
+                    width: 100%;
+                    padding-right: ptr(45px);
+                  }
+
+                  .btn-outline-secondary {
+                    position: absolute;
+                    right: ptr(8px);
+                    top: 50%;
+                    transform: translateY(-50%);
+                    padding: ptr(6px) ptr(6px);
+                    font-size: ptr(12px);
+                    border-radius: ptr(4px);
+                    height: ptr(35px);
+                    width: ptr(35px);
+                    border: none;
+                    background: transparent;
+                    color: $text-secondary;
+
+                    &:hover {
+                      font-weight: 700;
+                      color: $text-dark;
+                    }
+                  }
+                }
+              }
+            }
+
+            .form-label {
+              font-weight: 600;
+              color: $text-dark;
+              margin-bottom: ptr(8px);
+              font-size: ptr(14px);
+            }
+
+            .form-control {
+              border: 1px solid $border-color;
+              border-radius: ptr(5px);
+              padding: ptr(8px);
+              font-size: ptr(12px);
+              background-color: white;
+              transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+              &::placeholder {
+                font-size: ptr(10px);
+                color: $text-secondary;
+              }
+
+              &:focus {
+                border-color: $kb-yellow;
+                box-shadow: 0 0 0 ptr(2px) rgba(255, 188, 0, 0.25);
+                background-color: white;
+                outline: none;
+              }
+            }
+            
+              // 에러 메시지 스타일
+              .error-message {
+                color: $danger;
+                font-size: ptr(11px);
+                font-weight: 500;
+                margin-left: ptr(8px);
+                display: inline-block;
+                min-height: ptr(16px);
+                line-height: ptr(16px);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: ptr(200px);
+              }
+            }
+            
+            // 에러 상태 입력 필드 스타일
+            .form-control.error {
+              border-color: $danger;
+              box-shadow: 0 0 0 0.1rem $shadows;
+              animation: shake 0.4s ease-in-out;
+            }
+
+            .form-check {
+              font-size: ptr(12px);
+              margin-bottom: ptr(20px) !important;
+              display: flex;
+              align-items: center;
+              .form-check-label {
+                margin-left: ptr(5px);
+              }
+            }
+
+            .btn-warning {
+              font-size: ptr(12px);
+            }
+          }
+
+          // 관리자 로그인 탭 스타일
+          #admin {
+            .form-check {
+              font-size: ptr(12px);
+              margin-bottom: ptr(20px) !important;
+
+              // 에러 메시지 스타일
+              .error-message {
+                color: $danger;
+                font-size: ptr(11px);
+                font-weight: 500;
+                margin-left: ptr(8px);
+                display: inline-block;
+                min-height: ptr(16px);
+                line-height: ptr(16px);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: ptr(200px);
+              }
+            }
+            
+            // 에러 상태 입력 필드 스타일
+            .form-control.error {
+              border-color: $danger;
+              box-shadow: 0 0 0 0.1rem $shadows;
+              animation: shake 0.4s ease-in-out;
+            }
+
+            .btn-warning {
+              font-size: ptr(12px);
+            }
+          }
+
+          // 로그인 링크
+          .login-links {
+            display: flex;
+            justify-content: space-around;
+            margin-top: ptr(10px);
+            margin-bottom: ptr(20px);
+
+            .link {
+              font-size: ptr(11px);
+              text-decoration: none;
+              color: $text-secondary;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+
+          // 보안 수칙
+          .security-notice {
+            background-color: $kb-light-gray;
+            border-radius: ptr(6px);
+            padding: ptr(10px);
+            margin-top: ptr(12px);
+
+            .security-header {
+              display: flex;
+              align-items: center;
+              margin-bottom: ptr(6px);
+
+              i {
+                font-size: ptr(12px);
+                color: $text-secondary;
+                margin-right: ptr(4px);
+              }
+
+              h4 {
+                font-size: ptr(12px);
+                font-weight: 600;
+                color: $text-dark;
+                margin: 0;
+              }
+            }
+
+            .security-rules {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+
+              li {
+                font-size: ptr(10px);
+                color: $text-secondary;
+                margin-bottom: ptr(3px);
+                line-height: 1.3;
+
+                &:last-child {
+                  margin-bottom: 0;
+                }
+
+                &::before {
+                  content: "•";
+                  color: $text-secondary;
+                  margin-right: ptr(6px);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  
+// 반응형 디자인
+@media (max-width: 768px) {
+  .login-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: ptr(20px);
+    max-width: ptr(400px);
+  }
+
+  .info-section {
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .login-section {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .login-container {
+    padding: 1rem;
+    max-width: ptr(300px);
+  }
+}
+
+// 흔들림 애니메이션 (적당히 조정)
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-3px); }
+    40% { transform: translateX(3px); }
+    60% { transform: translateX(-2px); }
+    80% { transform: translateX(2px); }
+}

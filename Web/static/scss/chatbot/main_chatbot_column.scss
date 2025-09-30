@@ -1,0 +1,689 @@
+@import '../base';
+
+.main_chatbot_column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 0;
+
+    .chat_messages_area {
+        flex: 1;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative; 
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: ptr(30px) ptr(10px) ptr(10px) ptr(10px); // 여백 제거하여 90% 전체 활용
+        
+        // 커스텀 스크롤바 스타일
+        &::-webkit-scrollbar {
+            width: ptr(6px);
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: rgba($kb-text-light, 0.3);
+            border-radius: ptr(3px);
+            transition: background 0.2s ease;
+            
+            &:hover {
+                background: rgba($kb-text-light, 0.5);
+            }
+        }
+        
+        &::-webkit-scrollbar-thumb:active {
+            background: rgba($kb-text-light, 0.7);
+        }
+        .chat_messages_area_inner {
+            width: 90%;
+            height: 100%;
+        }
+        
+        // Usage Guide Styles
+        #usage_guide_container {
+            @include flex-center;
+            width: 100%;
+            height: 100%;
+            padding: ptr(20px) ptr(15px);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            
+            .usage_guide {
+                min-width: ptr(500px);
+                text-align: center;
+                
+                .usage_guide_header {
+                    margin-bottom: ptr(20px);
+                    
+                    .usage_guide_icon {
+                        @include flex-center;
+                        width: ptr(40px);
+                        height: ptr(40px);
+                        background: linear-gradient(135deg, $kb-yellow 0%, #ffd700 100%);
+                        border-radius: 50%;
+                        margin: 0 auto ptr(10px);
+                        box-shadow: 0 2px 8px rgba($kb-yellow, 0.3);
+                        
+                        i {
+                            font-size: ptr(18px);
+                            color: $kb-dark;
+                        }
+                    }
+                    
+                    .usage_guide_title {
+                        font-size: ptr(16px);
+                        font-weight: 600;
+                        color: $kb-dark;
+                        margin: 0;
+                        padding-bottom: ptr(20px)
+                    }
+                }
+                
+                .usage_guide_content {
+                    margin-bottom: ptr(20px);
+                    
+                    .usage_guide_step {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: ptr(10px);
+                        margin-bottom: ptr(16px);
+                        text-align: left;
+                        
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        
+                        .step_number {
+                            @include flex-center;
+                            width: ptr(15px);
+                            height: ptr(15px);
+                            background: lighten($kb-yellow, 30%);
+                            color: $kb-dark;
+                            border-radius: 50%;
+                            font-size: ptr(11px);
+                            font-weight: 600;
+                            flex-shrink: 0;
+                        }
+                        
+                        .step_content {
+                            flex: 1;
+                            
+                            h4 {
+                                font-size: ptr(12px);
+                                font-weight: 600;
+                                color: $kb-dark;
+                                margin: 0 0 ptr(4px) 0;
+                            }
+                            
+                            p {
+                                font-size: ptr(10px);
+                                color: $kb-text-dark;
+                                line-height: 1.4;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+                
+                .usage_guide_tips {
+                    border-top: 1px solid rgba($kb-border, 0.5);
+                    padding-top: ptr(25px);
+                    
+                    .tip_item {
+                        display: flex;
+                        align-items: center;
+                        gap: ptr(8px);
+                        margin-bottom: ptr(8px);
+                        font-size: ptr(9px);
+                        color: $kb-text-dark;
+                        justify-content: end;
+                        
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        
+                        i {
+                            color: $kb-yellow;
+                            font-size: ptr(11px);
+                            flex-shrink: 0;
+                        }
+                        
+                        span {
+                            line-height: 1.3;
+                        }
+                    }
+                }
+            }
+        }
+        
+        .bot_message {
+            display: flex;
+            gap: ptr(8px);
+            padding: ptr(15px) 0;
+            
+            &.loading_message {
+                .loading_bubble {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(8px);
+                    
+                    .loading_dots {
+                        display: flex;
+                        gap: ptr(4px);
+                        
+                        span {
+                            width: ptr(6px);
+                            height: ptr(6px);
+                            background-color: $kb-yellow;
+                            border-radius: 50%;
+                            animation: loading-dots 1.4s infinite ease-in-out both;
+                            
+                            &:nth-child(1) {
+                                animation-delay: -0.32s;
+                            }
+                            
+                            &:nth-child(2) {
+                                animation-delay: -0.16s;
+                            }
+                            
+                            &:nth-child(3) {
+                                animation-delay: 0s;
+                            }
+                        }
+                    }
+                    
+                    .loading_text {
+                        color : $kb-dark;
+                        font-size: ptr(12px);
+                    }
+                }
+            }
+            
+            .message_avatar {
+                @include flex-center;
+                width: ptr(30px);
+                height: ptr(30px);
+                border-radius: 50%;
+                flex-shrink: 0;
+                border: 1px solid $kb-border;
+                
+                .avatar_image {
+                    width: ptr(16px);
+                    height: ptr(16px);
+                    object-fit: contain;
+                }
+            }
+            
+            .message_content {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: ptr(8px);
+
+                .message_bubble {
+                    background-color: $kb-background-gray;
+                    padding: ptr(8px) ptr(12px);
+                    border-radius: ptr(12px);   
+                    font-size: ptr(12px);
+                    line-height: 1.3;
+                    color: $kb-dark;
+                    max-width: 80%;
+                    
+                    // 메타데이터 스타일
+                    .message_metadata {
+                        margin-top: ptr(12px);
+                        padding-top: ptr(12px);
+                        border-top: 1px solid rgba($kb-text-light, 0.2);
+                        
+                        .metadata_sources,
+                        .metadata_category,
+                        .metadata_key_facts {
+                            margin-bottom: ptr(8px);
+                            
+                            &:last-child {
+                                margin-bottom: 0;
+                            }
+                        }
+                        
+                        .metadata_label {
+                            font-size: ptr(11px);
+                            font-weight: 600;
+                            color: $kb-text-light;
+                            margin-bottom: ptr(4px);
+                        }
+                        
+                        .metadata_value {
+                            font-size: ptr(11px);
+                            color: $kb-text-dark;
+                            background-color: rgba($kb-yellow, 0.1);
+                            padding: ptr(4px) ptr(8px);
+                            border-radius: ptr(4px);
+                            display: inline-block;
+                        }
+                        
+                        .metadata_list {
+                            .metadata_item {
+                                font-size: ptr(11px);
+                                color: $kb-text-dark;
+                                margin-bottom: ptr(2px);
+                                padding-left: ptr(8px);
+                                
+                                &:last-child {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                .message_time {
+                    font-size: ptr(9px);
+                    color: $kb-text-light;
+                    align-self: flex-end;
+                }
+            }
+        }
+
+        .user_message {
+            display: flex;
+            gap: ptr(8px);
+            justify-content: flex-end; // 사용자 메시지는 오른쪽 정렬
+            padding: ptr(15px) 0;
+            position: relative;
+
+            .message_content {
+                display: flex;
+                align-items: center;
+                gap: ptr(8px);
+                flex-direction: row-reverse; // 시간, 메시지, 아바타 순서
+                width: 100%;
+            
+                .message_bubble {
+                    background-color: rgba($kb-yellow, 0.6);
+                    padding: ptr(8px) ptr(12px);
+                    border-radius: ptr(12px);
+                    font-size: ptr(12px);
+                    line-height: 1.3;
+                    color: $kb-dark;
+                    max-width: 80%;
+                }
+
+                .message_time {
+                    font-size: ptr(9px);
+                    color: $kb-text-light;
+                    align-self: flex-end;
+                }
+            }
+
+            .message_avatar {
+                @include flex-center;
+                width: ptr(30px);
+                height: ptr(30px);
+                background-color: $kb-background-gray;
+                border-radius: 50%;
+                flex-shrink: 0;
+
+                .avatar_image {
+                    width: ptr(16px);
+                    height: ptr(16px);
+                    object-fit: contain;
+                }
+            }
+        }
+
+
+        .suggested_questions_container{
+            @include flex-center;
+            margin-bottom: ptr(10px);
+            
+            &.force-hidden {
+                display: none !important;
+                visibility: hidden !important;
+            }
+            
+            .suggested_questions {
+                width: 75%;
+                
+                .suggested_questions_header {
+                    text-align: center;
+                    font-size: ptr(11px);
+                    color: $kb-text-light;
+                    padding-top: ptr(20px);
+                    padding-bottom: ptr(10px);
+                }
+                
+                .suggested_questions_grid {
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: ptr(8px);
+                    
+                    .suggested_question_card {
+                        border: 1px solid $kb-border;
+                        border-radius: ptr(8px);
+                        padding: ptr(10px);
+                        cursor: pointer;
+                        transition: all 0.2s ease;
+                        display: flex;
+                        align-items: center;
+                        gap: ptr(8px);
+                        
+                        &:hover {
+                            border-color: $kb-yellow;
+                            transform: translateY(-2px);
+                            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+                            .question_tag{
+                                background-color: $kb-yellow;
+                                border:none;
+                            }
+                        }
+                        
+                        &:active {
+                            transform: translateY(0);
+                            box-shadow: 0 2px 6px rgba(255, 193, 7, 0.2);
+                        }
+
+                        .question_radio {
+                            @include flex-center;
+                            
+                            i{
+                                font-size: ptr(12px);
+                                color: $kb-text-light;
+                            }
+                        }
+                        
+                        .question_content {
+                            flex: 1;
+                            
+                            .question_title {
+                                font-size: ptr(10px);
+                                font-weight: 400;
+                                color: $kb-dark;
+                                margin-bottom: ptr(2px);
+                            }
+                            
+                            .question_description {
+                                font-size: ptr(8px);
+                                color: $kb-text-light;
+                                line-height: 1.2;
+                            }
+                        }
+                        
+                        .question_tag {
+                            color: $kb-dark;
+                            font-size: ptr(8px);
+                            font-weight: 500;
+                            padding: ptr(2px) ptr(6px);
+                            border-radius: ptr(8px);
+                            flex-shrink: 0;
+                            border: 1px solid $kb-border;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .suggested_questions_button_container {
+        @include flex-center;
+        width: 90%;
+        
+        .show_questions_button {
+            @include flex-center;
+            gap: ptr(6px);
+            color: $kb-dark;
+            border: none;
+            border-radius: ptr(8px);
+            padding: ptr(4px) ptr(10px);
+            font-size: ptr(10px);
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: ptr(10px);
+            margin-top: ptr(10px);
+            
+            &:hover {
+                background-color: $kb-yellow;
+                transform: translateY(-1px);
+                font-weight: 500;
+            }
+            
+            &:active {
+                transform: translateY(0);
+            }
+            
+            i {
+                font-size: ptr(12px);
+            }
+        }
+    }
+    
+    .suggested_questions_cards_container {
+        width: 60%;
+        margin-top: ptr(10px);
+        margin-bottom: ptr(10px);
+        border-radius: ptr(12px);
+        background-color: $kb-background-gray;
+
+        .suggested_questions_grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: ptr(3px);
+            padding: ptr(8px);
+            
+            .grid_header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: ptr(10px);
+                font-weight: 500;
+                color: $kb-dark;
+                grid-column: 1 / -1;
+                
+                .header_text {
+                    font-size: ptr(11px);
+                    font-weight: 500;
+                    color: $kb-dark;
+                    padding-left: ptr(10px);
+                    gap: ptr(10px)
+                }
+                
+                .close_questions_button {
+                    @include flex-center;
+                    width: ptr(24px);
+                    height: ptr(24px);
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    color: $kb-text-light;
+                    transition: all 0.2s ease;
+                    border-radius: 50%;
+                    
+                    &:hover {
+                        background-color: rgba($kb-text-light, 0.1);
+                        color: $kb-dark;
+                    }
+                    
+                    i {
+                        font-size: ptr(16px);
+                    }
+                }
+            }
+            
+            .suggested_question_card {
+                border: 1px solid $kb-border;
+                border-radius: ptr(6px);
+                padding: ptr(8px);
+                cursor: pointer;
+                transition: all 0.2s ease;
+                display: flex;
+                align-items: center;
+                gap: ptr(6px);
+                background-color: $bg-light;
+                
+                &:hover {
+                    border-color: $kb-yellow;
+                    transform: translateY(-1px);
+                    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.1);
+                    .question_tag{
+                        background-color: $kb-yellow;
+                        border:none;
+                    }
+                }
+
+                .question_radio {
+                    @include flex-center;
+                    
+                    i{
+                        font-size: ptr(10px);
+                        color: $kb-text-light;
+                    }
+                }
+                
+                .question_content {
+                    flex: 1;
+                    
+                    .question_title {
+                        font-size: ptr(9px);
+                        font-weight: 400;
+                        color: $kb-dark;
+                    }
+                }
+                
+                .question_tag {
+                    color: $kb-dark;
+                    font-size: ptr(7px);
+                    font-weight: 500;
+                    padding: ptr(2px) ptr(4px);
+                    border-radius: ptr(6px);
+                    flex-shrink: 0;
+                    border: 1px solid $kb-border;
+                }
+            }
+        }
+    }
+    
+    .chat_input_area {
+        width: 90%;
+        background-color: white;
+        
+        .input_container {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: ptr(20px);
+            padding: ptr(4px) ptr(6px);
+            border: 1px solid $kb-border !important;
+            transition: all 0.2s ease;
+            
+            &:focus-within {
+                border-color: $kb-yellow !important;
+                box-shadow: 0 0 0 3px rgba($kb-yellow, 0.1) !important;
+            }
+            
+            .attach_button {
+                @include flex-center;
+                width: ptr(20px);
+                height: ptr(20px);
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: $kb-dark;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    color: $kb-yellow;
+                }
+                
+                i {
+                    font-size: ptr(14px);
+                }
+            }
+            
+            .input_separator {
+                width: 1px;
+                height: ptr(16px);
+                background-color: $kb-border;
+                margin: 0 ptr(8px);
+            }
+            
+            .chat_input {
+                flex: 1;
+                border: none;
+                background: transparent;
+                font-size: ptr(12px);
+                color: $kb-dark;
+                outline: none;
+                padding: ptr(4px) 0;
+                
+                &::placeholder {
+                    color: rgba($kb-text-light, 0.6);
+                }
+            }
+            
+            .voice_button {
+                @include flex-center;
+                width: ptr(20px);
+                height: ptr(20px);
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: $kb-dark;
+                transition: all 0.2s ease;
+                margin-right: ptr(8px);
+                
+                &:hover {
+                    color: $kb-yellow;
+                }
+                
+                i {
+                    font-size: ptr(14px);
+                }
+            }
+            
+            .voice_wave_button {
+                @include flex-center;
+                width: ptr(24px);
+                height: ptr(24px);
+                background-color: rgba($kb-yellow, 0.4);
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                color: $kb-dark;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    background-color: $kb-yellow;
+                    transform: scale(1.05);
+                }
+                
+                &:active {
+                    transform: scale(0.95);
+                }
+                
+                i {
+                    font-size: ptr(12px);
+                }
+            }
+        }
+    }
+}
+
+// 로딩 애니메이션 키프레임
+@keyframes loading-dots {
+    0%, 80%, 100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

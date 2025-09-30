@@ -1,0 +1,46 @@
+// KB국민은행 직원 업무시스템 - Footer 스타일
+
+// 변수, 함수, 믹스인 임포트
+@import 'variables';
+@import 'functions';
+@import 'mixins';
+
+// Footer
+.footer {
+  color: $text-light;
+  padding: ptr(8px) $spacing-lg;
+  font-size: ptr(11px);
+  height: $footer-height;
+  @include flex-between;
+  align-items: center;
+  margin-top: auto; // sticky footer를 위해
+  border-top: ptr(1px) solid $kb-border;
+
+  @include mobile {
+    flex-direction: column;
+    text-align: center;
+    padding: $spacing-sm;
+    gap: $spacing-sm;
+  }
+}
+
+.footer-left {
+  @include flex-start;
+  align-items: center;
+  gap: $spacing-md;
+
+  @include mobile {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+.footer-right {
+  @include flex-end;
+  align-items: center;
+  gap: $spacing-md;
+
+  @include mobile {
+    justify-content: center;
+  }
+}

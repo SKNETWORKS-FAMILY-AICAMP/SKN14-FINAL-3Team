@@ -1,0 +1,328 @@
+@import '../base';
+
+// Chat History Column Component
+.chat_history_column {
+    grid-column: 2;
+    min-height: 0;
+    padding: ptr(10px);
+    display: flex;
+    flex-direction: column;
+    gap: ptr(10px);
+    width: 100%;
+    border-right: ptr(1px) solid $kb-border;
+    
+    // Chat History Header
+    .chat_history_header {
+        display: flex;
+        flex-direction: column;
+        gap: ptr(5px);
+        width: 100%;
+        border-bottom: 1px solid $kb-border;
+        padding-bottom: ptr(10px);
+        
+        .new_chat_section, .chat_search_section {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            cursor: pointer;
+            padding: ptr(6px) ptr(10px) ptr(6px) ptr(6px);
+            border-radius: ptr(6px);
+            .history_icon, .search_icon {
+                @include flex-center;
+                width: ptr(20px);
+                height: ptr(20px);
+                color: $kb-dark;
+                
+                i {
+                    font-size: ptr(10px);
+                }
+            }
+            .new_chat_title, .chat_search_title {
+                font-size: ptr(12px);
+                font-weight: 400;
+                color: $kb-text-dark;
+                padding-left: ptr(5px);
+            }
+
+            .new_chat_shortcut, .chat_search_shortcut {
+                display: flex;
+                justify-content: flex-end;
+                font-size: ptr(10px);
+                font-weight: 400;
+                color: $kb-text-light;
+                margin-left: auto;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+
+            &:hover {
+                background-color: $kb-background-gray;
+                border-radius: ptr(6px);
+                
+                .new_chat_shortcut, .chat_search_shortcut {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .chat_history_list_title {
+        font-size: ptr(12px);
+        font-weight: 500;
+        color: $kb-text-dark;
+        padding-left: ptr(8px);
+    }
+
+    .chat_history_list {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: ptr(4px);
+        overflow-y: auto;
+        padding-right: ptr(4px);
+        
+        // 히스토리가 비어있을 때만 중앙 정렬
+        &:has(.empty_history) {
+            justify-content: center;
+        }
+        
+        &::-webkit-scrollbar {
+            width: ptr(4px);
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: ptr(2px);
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: ptr(2px);
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .history_item {
+            display: flex;
+            gap: ptr(10px);
+            padding: ptr(8px);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            align-items: center;
+
+            &:hover { 
+                background-color: $kb-background-gray;
+            }
+            
+            &.active {
+                background-color: $kb-background-gray;
+            }
+            
+            .function_icon {
+                @include flex-center;
+                width: ptr(20px);
+                height: ptr(20px);
+                color: $kb-text-light;
+                cursor: pointer;
+                opacity: 0;
+                transition: all 0.2s ease;
+                position: relative;
+                
+                &:hover {
+                    color: $kb-dark;
+                }
+                
+                i {
+                    font-size: ptr(12px);
+                }
+                
+                .context_menu {
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    background: white;
+                    border: 1px solid $kb-border;
+                    border-radius: ptr(6px);
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    z-index: 1000;
+                    min-width: ptr(80px);
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(-10px);
+                    transition: all 0.2s ease;
+                    
+                    &.show {
+                        opacity: 1;
+                        visibility: visible;
+                        transform: translateY(0);
+                    }
+                    
+                    .menu_item {
+                        display: flex;
+                        align-items: center;
+                        gap: ptr(6px);
+                        padding: ptr(6px) ptr(8px);
+                        cursor: pointer;
+                        transition: background-color 0.2s ease;
+                        font-size: ptr(10px);
+                        color: $kb-text-dark;
+                        
+                        &:hover {
+                            background-color: $kb-background-gray;
+                        }
+                        
+                        &:first-child {
+                            border-radius: ptr(6px) ptr(6px) 0 0;
+                        }
+                        
+                        &:last-child {
+                            border-radius: 0 0 ptr(6px) ptr(6px);
+                        }
+                        
+                        &:only-child {
+                            border-radius: ptr(6px);
+                        }
+                        
+                        i {
+                            font-size: ptr(10px);
+                            color: $kb-text-light;
+                        }
+                        
+                        span {
+                            font-weight: 400;
+                        }
+                        
+                        &[data-action="delete"] {
+                            &:hover {
+                                background-color: rgba(220, 53, 69, 0.1);
+                                color: #dc3545;
+                                
+                                i {
+                                    color: #dc3545;
+                                }
+                            }
+                        }
+                        
+                        &[data-action="save"] {
+                            &:hover {
+                                background-color: rgba(40, 167, 69, 0.1);
+                                color: #28a745;
+                                
+                                i {
+                                    color: #28a745;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            &:hover .function_icon {
+                opacity: 1;
+            }
+            
+            .history_content {
+                flex: 1;
+                min-width: 0;
+                gap: ptr(2px);
+                
+                .history_title {
+                    font-size: ptr(10px);
+                    font-weight: 500;
+                    color: $kb-text-dark;
+                    margin-bottom: ptr(2px);
+                    line-height: 1.2;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                
+                .history_time {
+                    font-size: ptr(8px);
+                    color: $kb-text-light;
+                }
+            }
+        }
+    }
+    
+    // History Footer
+    .history_footer {
+        border-top: 1px solid $kb-border;
+        padding-top: ptr(8px);
+        
+        .chat_storage_section, .chat_setting_section {
+            display: flex;
+            align-items: center;
+            gap: ptr(8px);
+            cursor: pointer;
+            padding: ptr(6px) ptr(10px) ptr(6px) ptr(6px);
+            border-radius: ptr(6px);
+
+            &:hover {
+                background-color: $kb-background-gray;
+                border-radius: ptr(6px);
+            }
+            
+            .storage_icon, .setting_icon {
+                @include flex-center;
+                width: ptr(20px);
+                height: ptr(20px);
+                color: $kb-dark;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                i {
+                    font-size: ptr(10px);
+                }
+            }
+        }
+
+        .chat_storage_title, .chat_setting_title {
+            font-size: ptr(12px);
+            font-weight: 400;
+            color: $kb-text-dark;
+        }
+    }
+    
+    // Empty History Styles
+    .chat_history_list {
+        .empty_history {
+            @include flex-center;
+            padding: ptr(32px) ptr(16px);
+            text-align: center;
+            min-height: ptr(128px);
+            
+            .empty_message {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: ptr(12px);
+                color: $kb-text-light;
+                
+                i {
+                    font-size: ptr(32px);
+                    color: #ccc;
+                    margin-bottom: ptr(8px);
+                }
+                
+                p {
+                    font-size: ptr(12px);
+                    line-height: 1.4;
+                    margin: 0;
+                    color: $kb-text-light;
+                    
+                    &:first-of-type {
+                        font-weight: 500;
+                        color: $kb-text-dark;
+                    }
+                    
+                    &:last-of-type {
+                        font-size: ptr(11px);
+                        color: #999;
+                    }
+                }
+            }
+        }
+    }
+}

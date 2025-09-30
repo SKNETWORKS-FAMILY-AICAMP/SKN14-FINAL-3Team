@@ -1,0 +1,82 @@
+// KB국민은행 직원 업무시스템 SCSS 함수
+
+@import "variables";
+
+// 단위 제거 함수
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// 픽셀을 rem으로 변환하는 함수
+@function ptr($px: $default-font-size) {
+  @return #{strip-unit($px) / strip-unit($default-font-size)}rem;
+}
+
+// 픽셀을 em으로 변환하는 함수
+@function pte($px: $default-font-size) {
+  @return #{strip-unit($px) / strip-unit($default-font-size)}em;
+}
+
+// 색상 투명도 조절 함수
+@function rgba-color($color, $alpha: 1) {
+  @return rgba($color, $alpha);
+}
+
+// z-index 레이어 관리 함수
+@function z($layer) {
+  $z-layers: (
+    modal: 1000,
+    dropdown: 900,
+    overlay: 800,
+    header: 700,
+    footer: 600,
+    content: 500,
+    background: 100
+  );
+  
+  @return map-get($z-layers, $layer);
+}
+
+// 반응형 폰트 크기 함수
+@function responsive-font($min-size, $max-size, $min-width: 320px, $max-width: 1200px) {
+  @return calc(#{$min-size} + #{strip-unit($max-size - $min-size)} * ((100vw - #{$min-width}) / #{strip-unit($max-width - $min-width)}));
+}
+
+// 단위 제거 함수
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// 색상 밝기 조절 함수
+@function lighten-color($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function darken-color($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// 그림자 생성 함수
+@function shadow($level: 1) {
+  $shadows: (
+    1: 0 2px 4px rgba(0, 0, 0, 0.1),
+    2: 0 4px 8px rgba(0, 0, 0, 0.12),
+    3: 0 8px 16px rgba(0, 0, 0, 0.15),
+    4: 0 16px 32px rgba(0, 0, 0, 0.2),
+    5: 0 32px 64px rgba(0, 0, 0, 0.25)
+  );
+  
+  @return map-get($shadows, $level);
+}
+
+// 간격 계산 함수
+@function spacing($multiplier: 1) {
+  @return $spacing-md * $multiplier;
+}
+
