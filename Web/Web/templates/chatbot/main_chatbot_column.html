@@ -1,0 +1,239 @@
+<div class="main_chatbot_column">
+    <!-- 챗봇 메시지 영역 -->
+    <div class="chat_messages_area">
+
+        <div class="chat_messages_area_inner">
+            <!-- 챗봇 환영 메시지 (동적으로 생성됨) -->
+            <div id="welcome_message_container"></div>
+
+            <!-- 사용자 메시지들 (동적으로 추가됨) -->
+            <div id="user_messages_container"></div>
+
+            <!-- 사용법 안내 (히스토리가 없을 때 표시) -->
+            <div id="usage_guide_container" style="display: none;">
+                <div class="usage_guide">
+                    <div class="usage_guide_header">
+                        <div class="usage_guide_icon">
+                            <i class="bi bi-lightbulb"></i>
+                        </div>
+                        <h3 class="usage_guide_title">KB FinAIssist 챗봇 사용법</h3>
+                    </div>
+                    <div class="usage_guide_content">
+                        <div class="usage_guide_step">
+                            <div class="step_number">1</div>
+                            <div class="step_content">
+                                <h4>새 채팅 시작</h4>
+                                <p>새 채팅 버튼을 클릭하여 채팅을 시작합니다.</p>
+                            </div>
+                        </div>
+                        <div class="usage_guide_step">
+                            <div class="step_number">2</div>
+                            <div class="step_content">
+                                <h4>질문 입력</h4>
+                                <p>하단 입력창에 궁금한 업무나 규정에 대해 질문해주세요.</p>
+                            </div>
+                        </div>
+                        <div class="usage_guide_step">
+                            <div class="step_number">3</div>
+                            <div class="step_content">
+                                <h4>자주 묻는 질문 활용</h4>
+                                <p>아래 카드에서 자주 묻는 질문을 선택하거나 "자주 묻는 질문" 버튼을 클릭하세요.</p>
+                            </div>
+                        </div>
+                        <div class="usage_guide_step">
+                            <div class="step_number">4</div>
+                            <div class="step_content">
+                                <h4>AI 답변 확인</h4>
+                                <p>FinAIssist가 관련 문서를 참조하여 정확한 답변을 제공합니다.</p>
+                            </div>
+                        </div>
+                        <div class="usage_guide_step">
+                            <div class="step_number">5</div>
+                            <div class="step_content">
+                                <h4>PDF 문서 참조</h4>
+                                <p>참조 중인 문서를 클릭하여 PDF 파일을 확인 할 수 있고</p>
+                                <p>참조된 페이지를 클릭하면 스크롤 위치가 이동해 해당 AI 답변 내용을 확인 할 수 있습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="usage_guide_tips">
+                        <div class="tip_item">
+                            <i class="bi bi-chat-dots"></i>
+                            <span>구체적인 질문을 하면 더 정확한 답변을 받을 수 있습니다.</span>
+                        </div>
+                        <div class="tip_item">
+                            <i class="bi bi-file-earmark-pdf"></i>
+                            <span>답변에 참조된 PDF 문서를 클릭하여 상세 내용을 확인할 수 있습니다.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자주 묻는 질문 카드들 (대화창 바로 밑) -->
+            <div class="suggested_questions_container" style="display: none;">
+                <div class="suggested_questions">
+                    <div class="suggested_questions_header">
+                        <span class="header_text">자주 묻는 질문을 선택하거나 직접 입력해주세요</span>
+                    </div>
+                    <div class="suggested_questions_grid">
+                        <div class="suggested_question_card" data-question="개인 신용대출 가입을 위해 고객이 준비해야 하는 서류 리스트(소득유형별)와 가입 유의사항을 알려주세요.">
+                            <div class="question_radio">
+                                <i class="bi bi-chat"></i>
+                            </div>
+                            <div class="question_content">
+                                <div class="question_title">개인 대출 서류</div>
+                                <div class="question_description">개인 여신 대출 기본 서류 안내</div>
+                            </div>
+                            <div class="question_tag">대출</div>
+                        </div>
+                        <div class="suggested_question_card" data-question="전세 담보 대출 신청 시 상환 능력 및 신용에 따른 필요 서류 리스트와 증빙 항목, 가입 유의사항을 알려주세요.">
+                            <div class="question_radio">
+                                <i class="bi bi-chat"></i>
+                            </div>
+                            <div class="question_content">
+                                <div class="question_title">담보 대출 서류</div>
+                                <div class="question_description">전세 담보 대출 기본 서류 안내</div>
+                            </div>
+                            <div class="question_tag">대출</div>
+                        </div>
+                        <div class="suggested_question_card" data-question="전세자금대출 신청 시 상환 능력 및 신용에 따른 필요 서류 및 가입 유의사항을 알려주세요.">
+                            <div class="question_radio">
+                                <i class="bi bi-chat"></i>
+                            </div>
+                            <div class="question_content">
+                                <div class="question_title">전세 대출 서류</div>
+                                <div class="question_description">전세자금대출 기본 서류 안내</div>
+                            </div>
+                            <div class="question_tag">대출</div>
+                        </div>
+                        <div class="suggested_question_card" data-question="대출 상환 방식 3가지('원금 균등 상환','원리금 균등 상환','만기 일시 상환')의 차이점을 알려주세요. 선택 시 고려 사항도 함께 알려주세요.">
+                            <div class="question_radio">
+                                <i class="bi bi-chat"></i>
+                            </div>
+                            <div class="question_content">
+                                <div class="question_title">대출 상환 방식</div>
+                                <div class="question_description">대출 상환 방식별 차이점 안내</div>
+                            </div>
+                            <div class="question_tag">대출</div>
+                        </div>
+                        <div class="suggested_question_card" data-question="대출 금리가 어떻게 구성되는지와 기준 금리, MOR 금리, 가산 금리, 우대 금리를 각각 소개해주세요.">
+                            <div class="question_radio">
+                                <i class="bi bi-chat"></i>
+                            </div>
+                            <div class="question_content">
+                                <div class="question_title">금리 안내</div>
+                                <div class="question_description">대출 금리 구성 항목 소개</div>
+                            </div>
+                            <div class="question_tag">대출</div>
+                        </div>
+                        <div class="suggested_question_card" data-question="중도 상환 수수료가 무엇인지와 그 계산 방법을 설명해주세요. 또한 KB국민은행의 중도상환수수료를 항목별로 알려주세요.">
+                            <div class="question_radio">
+                                <i class="bi bi-chat"></i>
+                            </div>
+                            <div class="question_content">
+                                <div class="question_title">중도 상환 수수료</div>
+                                <div class="question_description">중도 상환 및 대출 갈아타기 방법</div>
+                            </div>
+                            <div class="question_tag">대출</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+
+    </div>
+
+    <!-- 자주 묻는 질문 버튼/카드 (input 위에 위치) -->
+    <div class="suggested_questions_button_container" style="display: none;">
+        <button class="show_questions_button">
+            <i class="bi bi-question-circle"></i>
+            자주 묻는 질문
+        </button>
+    </div>
+    
+    <!-- 자주 묻는 질문 카드들 (input 위에 위치) -->
+    <div class="suggested_questions_cards_container" style="display: none;">
+        <div class="suggested_questions_grid">
+            <div class="grid_header">
+                <span class="header_text">
+                    자주 묻는 질문
+                </span>
+                <button class="close_questions_button">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="suggested_question_card" data-question="개인 신용대출 가입을 위해 고객이 준비해야 하는 서류 리스트(소득유형별)와 가입 유의사항을 알려주세요.">
+                <div class="question_radio">
+                    <i class="bi bi-chat"></i>
+                </div>
+                <div class="question_content">
+                    <div class="question_title">개인 대출 서류</div>
+                </div>
+                <div class="question_tag">대출</div>
+            </div>
+            <div class="suggested_question_card" data-question="전세 담보 대출 신청 시 상환 능력 및 신용에 따른 필요 서류 리스트와 증빙 항목, 가입 유의사항을 알려주세요.">
+                <div class="question_radio">
+                    <i class="bi bi-chat"></i>
+                </div>
+                <div class="question_content">
+                    <div class="question_title">담보 대출 서류</div>
+                </div>
+                <div class="question_tag">대출</div>
+            </div>
+            <div class="suggested_question_card" data-question="전세자금대출 신청 시 상환 능력 및 신용에 따른 필요 서류 및 가입 유의사항을 알려주세요.">
+                <div class="question_radio">
+                    <i class="bi bi-chat"></i>
+                </div>
+                <div class="question_content">
+                    <div class="question_title">전세 대출 서류</div>
+                </div>
+                <div class="question_tag">대출</div>
+            </div>
+            <div class="suggested_question_card" data-question="대출 상환 방식 3가지('원금 균등 상환','원리금 균등 상환','만기 일시 상환')의 차이점을 알려주세요. 선택 시 고려 사항도 함께 알려주세요.">
+                <div class="question_radio">
+                    <i class="bi bi-chat"></i>
+                </div>
+                <div class="question_content">
+                    <div class="question_title">대출 상환 방식</div>
+                </div>
+                <div class="question_tag">대출</div>
+            </div>
+            <div class="suggested_question_card" data-question="대출 금리가 어떻게 구성되는지와 기준 금리, MOR 금리, 가산 금리, 우대 금리를 각각 소개해주세요.">
+                <div class="question_radio">
+                    <i class="bi bi-chat"></i>
+                </div>
+                <div class="question_content">
+                    <div class="question_title">금리 안내</div>
+                </div>
+                <div class="question_tag">대출</div>
+            </div>
+        <div class="suggested_question_card" data-question="중도 상환 수수료가 무엇인지와 그 계산 방법을 설명해주세요. 또한 KB국민은행의 중도상환수수료를 항목별로 알려주세요.">
+            <div class="question_radio">
+                <i class="bi bi-chat"></i>
+            </div>
+            <div class="question_content">
+                <div class="question_title">중도 상환 수수료</div>
+            </div>
+            <div class="question_tag">대출</div>
+        </div>
+        </div>
+    </div>
+
+    <!-- 입력 영역 -->
+    <div class="chat_input_area">
+        <div class="input_container" style="display: none;">
+            <button class="attach_button">
+                <i class="bi bi-plus"></i>
+            </button>
+            <div class="input_separator"></div>
+            <input type="text" class="chat_input" placeholder="무엇이든 물어보세요">
+            <button class="voice_button">
+                <i class="bi bi-mic"></i>
+            </button>
+            <button class="voice_wave_button">
+                <i class="bi bi-soundwave"></i>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,81 @@
+<!-- Today's Tasks Widget -->
+<div class="todo-widget">
+    <div class="todo-header">
+        <div class="todo-title">
+            <i class="bi bi-list-check"></i>
+            <span>오늘 할 일</span>
+        </div>
+        <button class="add-task-btn" id="add-task-btn">
+            <i class="bi bi-plus"></i>
+        </button>
+    </div>
+    
+    <div class="todo-list" id="todo-list">
+        <!-- Todo Item 1 -->
+        <div class="todo-item" data-id="1">
+            <div class="todo-checkbox">
+                <input type="checkbox" id="todo-1" class="todo-check">
+                <label for="todo-1" class="todo-check-label"></label>
+            </div>
+            <div class="todo-content">
+                <span class="todo-text">김민수 고객 대출</span>
+            </div>
+            <div class="todo-actions">
+                <button class="todo-delete-btn" data-id="1">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Todo Item 2 -->
+        <div class="todo-item" data-id="2">
+            <div class="todo-checkbox">
+                <input type="checkbox" id="todo-2" class="todo-check">
+                <label for="todo-2" class="todo-check-label"></label>
+            </div>
+            <div class="todo-content">
+                <span class="todo-text">월말 정산 보고서 작성</span>
+            </div>
+            <div class="todo-actions">
+                <button class="todo-delete-btn" data-id="2">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Todo Item 3 -->
+        <div class="todo-item" data-id="3">
+            <div class="todo-checkbox">
+                <input type="checkbox" id="todo-3" class="todo-check">
+                <label for="todo-3" class="todo-check-label"></label>
+            </div>
+            <div class="todo-content">
+                <span class="todo-text">신규 고객 상담 준비</span>
+            </div>
+            <div class="todo-actions">
+                <button class="todo-delete-btn" data-id="3">
+                    <i class="bi bi-trash"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Task Modal -->
+    <div class="todo-modal" id="todo-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4>새 할 일 추가</h4>
+                <button class="modal-close" id="modal-close">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="new-task-input" placeholder="할 일을 입력하세요..." class="task-input">
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" id="btn-cancel">취소</button>
+                <button class="btn-add" id="btn-add">추가</button>
+            </div>
+        </div>
+    </div>
+</div>

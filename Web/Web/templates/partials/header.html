@@ -1,0 +1,20 @@
+{% load static %}
+<header class="header">
+    <div class="header-left">
+        <div class="kb-logo">
+            <img src="{% static 'images/KB_logo.png' %}" alt="KB국민은행" class="kb-logo-img">
+            <span class="system-name">x</span>
+            <img src="{% static 'images/FinAissist.png' %}" alt="FinAissist" class="finaissist-logo">
+        </div>
+    </div>
+    <div class="header-right">
+        {% if request.session.user_id or request.session.admin_id %}
+            <span class="user-icon">
+                <i class="bi bi-person-fill"></i>
+            </span>
+            <span class="user-name">{{ request.session.user_name }} 님 안녕하세요 !</span>
+            <span class="logout-btn">로그아웃</span>
+        {% endif %}
+        <span class="version">v1.0.0</span>
+    </div>
+</header>

@@ -1,0 +1,154 @@
+<!-- 두 번째 컬럼 - 고객 정보 입력 및 대출 정보 입력 -->
+<div class="second_column">
+    <!-- 첫 번째 row - 고객 정보 입력 -->
+    <div class="first_row">
+        <div class = "credit_assessment_title">
+            <span>여신 심사 시스템</span>
+            <div class="assessment_type_toggle">
+                <button class="toggle_button active" data-type="personal">
+                    <i class="bi bi-person-fill"></i>
+                    <span>개인</span>
+                </button>
+                <button class="toggle_button" data-type="corporate">
+                    <i class="bi bi-building"></i>
+                    <span>기업</span>
+                </button>
+            </div>
+        </div>
+        <div class="customer_info_header">
+            <i class="bi bi-person-fill header_icon"></i>
+            <span class="header_title">고객 정보 입력</span>
+        </div>
+        <div class="customer_display_header" style="display: none;">
+            <i class="bi bi-person-check-fill header_icon"></i>
+            <span class="header_title">고객 정보</span>
+        </div>
+        <div class="customer_info_content">
+            <!-- 고객 정보 입력 폼 -->
+            <div class="input_grid"">
+                <div class="input_group required">
+                    <label for="customer_name">고객명</label>
+                    <input type="text" id="customer_name" name="customer_name" placeholder="홍길동" required>
+                    <span class="error-message" id="customer_name_error"></span>
+                </div>
+                <div class="input_group required rrn_input">
+                    <label for="customer_rrn">주민번호</label>
+                    <input type="text" id="customer_rrn" name="customer_rrn" placeholder="123456-1234567" maxlength="14" required>
+                    <span class="error-message" id="customer_rrn_error"></span>
+                </div>
+                <div class="input_group required phone_input">
+                    <label for="customer_phone">연락처</label>
+                    <input type="tel" id="customer_phone" name="customer_phone" placeholder="010-1234-5678" maxlength="13" required>
+                    <span class="error-message" id="customer_phone_error"></span>
+                </div>
+                <div class="input_group">
+                    <label for="customer_email">고객 이메일</label>
+                    <input type="email" id="customer_email" name="customer_email" placeholder="finaissist1234@kb.com">
+                </div>
+            </div>
+            
+            <!-- 행원 주의사항 -->
+            <div class="banker_notes">
+                <div class="notes_header">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <h4>행원 주의사항</h4>
+                </div>
+                <div class="notes_content">
+                    <div class="note_item">
+                        <i class="bi bi-dot note_icon"></i>
+                        <div class="note_text">
+                            <strong>신분증 확인 필수:</strong> 주민번호와 실제 신분증이 일치하는지 반드시 확인하세요.
+                        </div>
+                    </div>
+                    <div class="note_item">
+                        <i class="bi bi-dot note_icon"></i>
+                        <div class="note_text">
+                            <strong>연락처 검증:</strong> 고객이 실제 사용하는 연락처인지 확인하세요.
+                        </div>
+                    </div>
+                    <div class="note_item">
+                        <i class="bi bi-dot note_icon"></i>
+                        <div class="note_text">
+                            <strong>개인정보보호:</strong> 고객 정보 입력 시 주변에 다른 고객이 없는지 확인하고, 화면을 보호하세요.
+                        </div>
+                    </div>
+                    <div class="note_item">
+                        <i class="bi bi-dot note_icon"></i>
+                        <div class="note_text">
+                            <strong>고객 동의:</strong> 정보 수집 및 이용에 대한 고객의 명시적 동의를 받았는지 확인하세요.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 고객 정보 확인 버튼 -->
+            <div class="customer_check_actions">
+                <button type="button" class="btn_check_customer" id="btn_check_customer">
+                    <i class="bi bi-search"></i>
+                    <span>고객 정보 확인</span>
+                </button>
+             </div>
+    
+            <!-- 고객 정보 표시 영역 -->
+            <div class="customer_display_content" id="customer_display_content" style="display: none;">
+            <!-- 고객 정보가 여기에 동적으로 표시됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 두 번째 row - 대출 정보 입력 -->
+    <div class="second_row" id="second_row" style="display: none;">
+        <div class="loan_info_header">
+            <i class="bi bi-credit-card-fill header_icon"></i>
+            <span>대출 정보 입력</span>
+        </div>
+
+        <div class="loan_info_content">
+            <div class="input_grid">
+                <div class="input_group required">
+                    <label for="loan_amount">대출 신청 금액</label>
+                    <input type="text" id="loan_amount" name="loan_amount" placeholder="10,000,000" required>
+                    <span class="error-message" id="loan_amount_error"></span>
+                </div>
+                <div class="input_group required">
+                    <label for="loan_purpose">대출 목적</label>
+                    <select id="loan_purpose" name="loan_purpose" required>
+                        <option value="">선택하세요</option>
+                        <option value="house">학자금/교육비</option>
+                        <option value="business">의료비</option>
+                        <option value="education">창업/사업자금</option>
+                        <option value="medical">개인용도</option>
+                        <option value="living">부채통합/대환</option>
+                    </select>
+                    <span class="error-message" id="loan_purpose_error"></span>
+                </div>
+                <div class="input_group required">
+                    <label for="loan_product">대출 상품</label>
+                    <select id="loan_product" name="loan_product" required>
+                        <option value="">대출 목적을 먼저 선택하세요</option>
+                    </select>
+                    <span class="error-message" id="loan_product_error"></span>
+                </div>
+                <div class="input_group required">
+                    <label for="loan_period">대출 기간 (개월)</label>
+                    <input type="number" id="loan_period" name="loan_period" placeholder="12" required>
+                    <span class="error-message" id="loan_period_error"></span>
+                </div>
+            </div>
+
+            <!-- 세 번째 row - 심사 요청 버튼 (second_row 내부로 이동) -->
+            <div class="third_row" id="third_row">
+                <div class="assessment_actions">
+                    <button class="btn_assess" id="btn_assess">
+                        <i class="bi bi-clipboard-check"></i>
+                        <span>여신 심사 요청</span>
+                    </button>
+                    <button class="btn_reset" id="btn_reset">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        <span>초기화</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
