@@ -1,0 +1,359 @@
+// KB국민은행 직원 업무시스템 - 대시보드 SCSS
+
+// 변수, 함수 import
+@import '../base';
+@import '../partials/team_channel_column';
+
+// 대시보드 컨테이너
+.dashboard_container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    height: calc(100vh - #{$header-height} - #{$footer-height});
+    
+    .dashboard_content {
+        display: grid;
+        grid-template-columns: 0fr ptr(240px) 1fr ptr(280px);
+        width: 100%;
+        flex: 1;
+        min-height: 0;
+
+        // Second Column (유저 정보)
+        .second_column {
+            grid-column: 2;
+            min-height: 0;
+            padding: ptr(10px);
+            display: flex;
+            flex-direction: column;
+            gap: ptr(10px);
+            border-right: ptr(1px) solid $kb-border;
+             
+            // User Profile Card
+            .user_profile_card {
+                background-color: $kb-dark;
+                border-radius: ptr(8px);
+                padding: ptr(10px);
+                display: flex;
+                flex-direction: column;
+                gap: ptr(5px);
+                    
+                .user_avatar {
+                    width: ptr(30px);
+                    height: ptr(30px);
+                    background-color: $kb-yellow;
+                    border-radius: ptr(30px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    
+                    i {
+                        color: $kb-dark;
+                        font-size: ptr(20px);
+                    }
+                }
+                 
+                .user_top_row {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(10px);
+                }
+                 
+                .user_info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: ptr(2px);
+                    
+                    .user_name {
+                        font-size: ptr(14px);
+                        font-weight: 600;
+                        color: $kb-text-white;
+                        margin: 0;
+                    }
+                    
+                    .user_position {
+                        font-size: ptr(12px);
+                        color: $kb-text-white-light;
+                        margin: 0;
+                    }
+                }
+                
+                .user_dept_container {
+                    margin-top: ptr(5px);
+                    
+                    .user_dept {
+                        font-size: ptr(10px);
+                        color: $kb-text-white-light;
+                        margin: 0;
+                    }
+                }
+            }
+            
+            // Navigation Menu
+            .nav_menu {
+                background-color: $bg-light;
+                border-radius: ptr(8px);
+                padding: 0 ptr(10px);
+                display: flex;
+                flex-direction: column;
+                
+                .nav_item {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(10px);
+                    padding: ptr(8px) ptr(10px);
+                    border-radius: ptr(6px);
+                    cursor: pointer;
+                    transition: background-color 0.2s ease;
+                    
+                    &:hover {
+                        background-color: $kb-background-gray;
+                    }
+                    
+                    i {
+                        font-size: ptr(14px);
+                        color: $kb-dark;
+                        width: ptr(16px);
+                        text-align: center;
+                    }
+                    
+                    span {
+                        font-size: ptr(12px);
+                        color: $kb-text-dark;
+                        font-weight: 500;
+                    }
+                }
+            }
+            
+            // Tasks Section
+            .tasks_section {
+                flex: 1;
+                min-height: 0;
+                padding: ptr(10px)
+            }
+        }
+        
+        // Third Column (서브 대시보드)
+        .third_column {
+            grid-column: 3;
+            display: grid;
+            grid-template-rows: auto auto auto auto;
+            gap: ptr(10px);
+            padding: ptr(20px);
+            height: 100%;
+            min-height: 0;
+            
+            // 1번째 줄 - 알림
+            .notice_container {
+                grid-row: 1;
+                display: flex;
+                gap: ptr(10px);
+                font-size: ptr(12px);
+                
+                .notice_label {
+                    @include flex-center;
+                    width: ptr(40px);
+                    background-color: $kb-yellow;
+                    border-radius: ptr(10px);
+                    font-weight: 600;
+                    font-size: ptr(10px);
+                }
+            }
+            
+            // 2번째 줄 - 메인 카드와 캘린더
+            .second_row {
+                grid-row: 2;
+                display: grid;
+                grid-template-columns: 4fr 1fr;
+                gap: ptr(10px);
+                min-height: 0;
+
+                .main_cards_container {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr ;
+                    grid-template-rows: 1.2fr 1fr;
+                    gap: ptr(10px);
+                    min-height: 0;
+
+                    .search_product_container,
+                    .search_customer_container,
+                    .report_management_container,
+                    .chatbot_container,
+                    .credit_assessment_container,
+                    .schedule_management_container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        padding: ptr(15px);
+                        border-radius: ptr(8px);
+                        border: 1px solid $kb-border;
+                        transition: all 0.2s ease;
+                        cursor: pointer;
+                        
+                        &:hover {
+                            border-color: $kb-yellow;
+                            transform: translateY(-2px);
+                            box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+                        }
+                        
+                        .icon {
+                            background-color: $kb-yellow;
+                            border-radius: 50%;
+                            width: ptr(20px);
+                            height: ptr(20px);
+                            i {
+                                font-size: ptr(10px);
+                                color: $kb-dark;
+                            }
+                        }
+                        
+                        .title {
+                            font-size: ptr(12px);
+                            font-weight: 600;
+                            color: $kb-dark;
+                        }
+                        
+                        .description {
+                            font-size: ptr(10px);
+                            color: $kb-dark;
+                            line-height: 1.4;
+                        }
+                    }
+
+                    .icon {
+                        @include flex-center;
+                    }
+                }
+                
+                .calendar_container {
+                    border-radius: ptr(8px);
+                    border: ptr(1px) solid $kb-border;
+                    padding: ptr(10px);
+                    min-height: 0;
+                    display: flex;
+                    flex-direction: column;
+        
+                    &:hover {
+                        border-color: $kb-yellow;
+                        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+                    }
+                    // 캘린더 스타일은 별도 calendar.scss 파일에서 관리
+                }
+            }
+            
+            // 3번째 줄 - 환율과 대기 고객
+            .third_row {
+                grid-row: 3;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: ptr(10px);
+                min-height: 0;
+                
+                .interest_rate_container {
+                    min-height: 0;
+                }
+            }
+            
+            .fourth_row {
+                grid-row: 4;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: ptr(10px);
+                min-height: 0;
+                
+                .transaction_status_container {
+                    min-height: 0;
+                }
+                
+                .notification_container {
+                    min-height: 0;
+                }
+            }
+        }
+        
+        // Fourth Column (서브 대시보드)
+        .fourth_column {
+            grid-column: 4;
+            min-height: 0;
+            padding: ptr(20px);
+            display: grid;
+            gap: ptr(10px);
+            border-left: ptr(1px) solid $kb-border;
+            grid-template-rows: ptr(280px) ptr(120px) auto;
+            padding-top: ptr(50px);
+        }
+    }
+}
+
+// 반응형 디자인
+@include mobile {
+    .dashboard_container {
+        .dashboard_content {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto;
+            gap: ptr(20px);
+            
+            .second_column {
+                grid-column: 1;
+                grid-row: 1;
+                border-right: none;
+                border-bottom: ptr(1px) solid $kb-border;
+            }
+            
+            .third_column {
+                grid-column: 1;
+                grid-row: 2;
+                
+                .main_content {
+                    grid-template-columns: 1fr;
+                    grid-template-rows: auto auto auto auto auto;
+                    
+                    .exchange_rate_widget {
+                        grid-column: 1;
+                        grid-row: 1;
+                    }
+                    
+                    .interest_rate_widget {
+                        grid-column: 1;
+                        grid-row: 2;
+                    }
+                    
+                    .transaction_status_widget {
+                        grid-column: 1;
+                        grid-row: 3;
+                    }
+                    
+                    .notification_widget {
+                        grid-column: 1;
+                        grid-row: 4;
+                    }
+                    
+                    .calendar_widget {
+                        grid-column: 1;
+                        grid-row: 5;
+                    }
+                }
+            }
+            
+            .fourth_column {
+                grid-column: 1;
+                grid-row: 3;
+                border-left: none;
+                border-top: ptr(1px) solid $kb-border;
+                grid-template-rows: auto auto auto;
+                gap: ptr(15px);
+            }
+        }
+    }
+    
+    .chat_messages {
+        padding: ptr(16px);
+    }
+    
+    .message_input_area {
+        padding: ptr(12px) ptr(16px);
+    }
+}

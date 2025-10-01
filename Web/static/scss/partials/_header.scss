@@ -1,0 +1,107 @@
+// KB국민은행 직원 업무시스템 - Header 스타일
+
+// 변수, 함수, 믹스인 임포트
+@import 'variables';
+@import 'functions';
+@import 'mixins';
+
+// Header
+.header {
+  color: $text-light;
+  padding: ptr(8px) $spacing-lg;
+  border-bottom: ptr(1px) solid $kb-border;
+  height: $header-height;
+  @include flex-between;
+  align-items: center;
+
+  @include mobile {
+    flex-direction: column;
+    text-align: center;
+    padding: $spacing-sm;
+  }
+  .header-left {
+    @include flex-start;
+    align-items: center;
+    gap: $spacing-md;
+  
+    @include mobile {
+      flex-direction: column;
+      gap: $spacing-sm;
+      margin-bottom: $spacing-sm;
+    }
+  }
+  
+  .kb-logo {
+    @include flex-start;
+    align-items: center;
+    gap: $spacing-sm;
+    cursor: pointer;
+  }
+  
+  .kb-logo-img {
+    height: ptr(32px);
+    width: auto;
+    max-width: ptr(100px);
+    object-fit: contain;
+  }
+  
+  .finaissist-logo {
+    height: ptr(28px);
+    width: auto;
+    max-width: ptr(120px);
+    object-fit: contain;
+  }
+  
+  .system-name {
+    font-size: ptr(16px);
+    font-weight: 500;
+    color: $kb-gray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(ptr(-2px));
+  }
+  
+  .header-right {
+    @include flex-end;
+    align-items: center;
+    
+    @include mobile {
+      justify-content: center;
+    }
+  }
+  
+  .user-icon {
+    @include flex-center;
+    font-size: ptr(13px);
+    color: $kb-text-light;
+    width: ptr(22px);
+    height: ptr(22px);
+    border-radius: ptr(20px);
+    background-color: $kb-border;
+  }
+
+  .user-name {
+    font-size: ptr(12px);
+    color: $kb-text-light;
+    padding: ptr(4px) ptr(8px);
+  }
+
+  .logout-btn {
+    font-size: ptr(12px);
+    color: $kb-text-light;
+    padding: ptr(4px) ptr(8px);
+    border-radius: $border-radius-sm;
+    cursor: pointer;
+  }
+
+  .version {
+    font-size: ptr(12px);
+    color: $kb-text-light;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: ptr(4px) ptr(8px);
+    border-radius: $border-radius-sm;
+  }
+
+}  
+

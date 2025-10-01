@@ -1,0 +1,62 @@
+<!-- Transaction Status Widget -->
+<div class="transaction-status-widget">
+    <div class="transaction-status-header">
+        <div class="header-left">
+            <span class="header-icon">
+            </span>
+            <span class="header-title">실시간 거래 현황</span>
+        </div>
+        <div class="header-right">
+            <span class="last-update" id="transaction-last-update">마지막 업데이트: <script>document.write(new Date().toLocaleTimeString('ko-KR', {hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit'}));</script></span>
+            <button class="refresh-btn" id="transaction-refresh-btn">
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="transaction-status-grid">
+        <div class="transaction-item" data-type="deposit">
+            <div class="transaction-label">입금</div>
+            <div class="transaction-main-row">
+                <div class="transaction-rate" id="deposit-count">1,247</div>
+                <div class="transaction-change">
+                    <span class="change-value" id="deposit-change">+156</span>
+                    <span class="change-percent" id="deposit-percent">↑ 12.5%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transaction-item" data-type="withdrawal">
+            <div class="transaction-label">출금</div>
+            <div class="transaction-main-row">
+                <div class="transaction-rate" id="withdrawal-count">892</div>
+                <div class="transaction-change">
+                    <span class="change-value" id="withdrawal-change">-29</span>
+                    <span class="change-percent" id="withdrawal-percent">↓ 3.2%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transaction-item" data-type="transfer">
+            <div class="transaction-label">이체</div>
+            <div class="transaction-main-row">
+                <div class="transaction-rate" id="transfer-count">2,156</div>
+                <div class="transaction-change">
+                    <span class="change-value" id="transfer-change">+187</span>
+                    <span class="change-percent" id="transfer-percent">↑ 8.7%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="transaction-item" data-type="total">
+            <div class="transaction-label">총 거래</div>
+            <div class="transaction-main-row">
+                <div class="transaction-rate" id="total-count">4,295</div>
+                <div class="transaction-change">
+                    <span class="change-value" id="total-change">+314</span>
+                    <span class="change-percent" id="total-percent">↑ 5.8%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

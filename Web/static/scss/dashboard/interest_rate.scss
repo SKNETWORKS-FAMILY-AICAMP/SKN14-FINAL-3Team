@@ -1,0 +1,135 @@
+// KB국민은행 직원 업무시스템 - 금리 정보 SCSS
+
+// 변수, 함수 import
+@import '../base';
+
+// Interest Rate Widget 스타일
+.interest-rate-widget {
+    border-radius: ptr(10px);
+    padding: ptr(10px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: $kb-background-gray;
+
+    .interest-rate-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: ptr(10px);
+        flex: 0 0 auto;
+        
+        .header-left {
+            padding-left: ptr(5px);
+            display: flex;
+            align-items: center;
+            gap: ptr(5px);
+            
+            .header-icon {
+                height: ptr(14px);
+                border: ptr(2px) solid $kb-dark;
+            }
+            
+            .header-title {
+                font-size: ptr(12px);
+                font-weight: 600;
+                color: $kb-dark;
+            }
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: ptr(10px);
+            
+            .last-update {
+                font-size: ptr(10px);
+                color: $kb-text-dark;
+            }
+            
+            .refresh-btn {
+                width: ptr(20px);
+                height: ptr(20px);
+                border: none;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                background: $bg-light;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    background: $kb-yellow;
+                }
+                
+                &:active {
+                    transform: scale(0.95);
+                }
+                
+                i {
+                    font-size: ptr(12px);
+                }
+            }
+        }
+    }
+    
+    .interest-rate-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: ptr(6px);
+        flex: 1;
+        min-height: 0;
+        
+        .rate-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: ptr(6px) ptr(8px);
+            border-radius: ptr(6px);
+            // border: ptr(1px) solid $kb-border;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background-color: $bg-light;
+            
+            .rate-type {
+                display: flex;
+                align-items: center;
+                gap: ptr(10px);
+                
+                i {
+                    font-size: ptr(12px);
+                    color: $kb-yellow;
+                }
+                
+                .rate-name {
+                    font-size: ptr(10px);
+                    font-weight: 500;
+                    color: $kb-dark;
+                    line-height: 1.2;
+                }
+            }
+            
+            .rate-value {
+                display: flex;
+                align-items: baseline;
+                gap: ptr(2px);
+                
+                .rate-number {
+                    font-size: ptr(12px);
+                    font-weight: 700;
+                    color: $kb-text-dark;
+                    line-height: 1;
+                }
+                
+                .rate-unit {
+                    font-size: ptr(9px);
+                    color: $kb-gray;
+                    line-height: 1;
+                }
+            }
+        }
+    }
+    
+}

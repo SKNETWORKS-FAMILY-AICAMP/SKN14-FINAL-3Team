@@ -1,0 +1,32 @@
+version: 1
+updated_at: "2025-09-19"
+
+terms:
+  - from: "Inflation"
+    to: "인플레이션"
+  - from: "Premium"
+    to: "프리미엄"
+  - from: "Seed money"
+    to: "시드머니"
+  - from: "여신약정"
+    to: "대출 계약"
+  - from: "거치기간"
+    to: "이자만 내는 기간"
+  - from: "익월"
+    to: "다음 달"
+  - from: "인출"
+    to: "출금"
+  - from: "잔고"
+    to: "잔액"
+  - from: "요구불"
+    to: "자유 입출금"
+
+regex_terms:
+  - pattern: "\\b익영업일\\b|\\bT\\+1영업일\\b"
+    replacement: "다음 영업일"
+  - pattern: "\\b지연배상금률\\b"
+    replacement: "연체 시 추가 금리"
+
+options:
+  case_insensitive: true
+  word_boundary: true

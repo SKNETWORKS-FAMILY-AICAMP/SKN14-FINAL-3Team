@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}KB국민은행 직원 업무시스템 - 대시보드{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calendar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/exchange_rate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/interest_rate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/todo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/transaction_status.css' %}">
+    <link rel="stylesheet" href="{% static 'css/notification.css' %}">
+    <!-- 서브대시보드 위젯 CSS -->
+    <link rel="stylesheet" href="{% static 'css/goal_achievement.css' %}">
+    <link rel="stylesheet" href="{% static 'css/recent_activity.css' %}">
+    <link rel="stylesheet" href="{% static 'css/work_distribution.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Dashboard Container -->
+<div class="dashboard_container">
+    <div class="dashboard_content">
+        <!-- Team Channel Column (팀 채팅) -->
+        {% include 'partials/team_channel_column.html' %}
+        <div class="second_column">
+            <!-- User Profile Card -->
+            <div class="user_profile_card">
+                <div class="user_top_row">
+                    <div class="user_avatar">
+                        <i class="bi bi-person-fill"></i>
+                    </div>
+                    <div class="user_info">
+                        <h2 class="user_name">{{ user.name }}</h2>
+                        <p class="user_position">{{ user.position.name|default:'직급 없음' }}</p>
+                    </div>
+                </div>
+                <div class="user_dept_container">
+                    <p class="user_dept">{{ user.department.name|default:'부서 없음' }} / 사번: {{ user.employee_id }}</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <div class="nav_menu">
+                <div class="nav_item">
+                    <i class="bi bi-file-text"></i>
+                    <span>보인 사전</span>
+                </div>
+                <div class="nav_item">
+                    <i class="bi bi-gear"></i>
+                    <span>정보 수정</span>
+                </div>
+                <div class="nav_item">
+                    <i class="bi bi-person-gear"></i>
+                    <span>계정 관리</span>
+                </div>
+                <div class="nav_item">
+                    <i class="bi bi-telephone"></i>
+                    <span>사내 연락처</span>
+                </div>
+            </div>
+            
+            <!-- Today's Tasks -->
+            <div class="tasks_section">
+                {% include 'dashboard/todo.html' %}
+            </div>
+        </div>
+        <div class="third_column">
+            <div class="notice_container">
+                <div class="notice_icon">
+                    <i class="bi bi-bell"></i>
+                </div>
+                <div class="notice_label">
+                    중요
+                </div>
+                <div class="notice_content">
+                    2024년 2분기 실적 보고서 제출 안내
+                </div>
+            </div>
+            <!-- 2번째 줄 -->
+            <div class="second_row">
+                <div class="main_cards_container">
+                     <div class="search_product_container">
+                         <div class="icon">
+                             <i class="bi bi-bank"></i>
+                         </div>
+                         <div class="title">
+                             금융상품 조회 
+                         </div>
+                         <div class="description">
+                             대출, 예금, 펀드 정보
+                         </div>
+                     </div>
+                     <div class="search_customer_container">
+                         <div class="icon">
+                             <i class="bi bi-people"></i>
+                         </div>
+                         <div class="title">
+                             개인/기업 고객 조회
+                         </div>
+                         <div class="description">
+                             고객 계좌 및 거래 현황
+                         </div>
+                     </div>
+                     <div class="report_management_container">
+                         <div class="icon">
+                             <i class="bi bi-file-earmark-text"></i>
+                         </div>
+                         <div class="title">
+                             보고서 관리
+                         </div>
+                         <div class="description">
+                             각종 보고서 작성 및 관리
+                         </div>
+                     </div>
+                     <div class="chatbot_container">
+                         <div class="icon">
+                             <i class="bi bi-robot"></i>
+                         </div>
+                         <div class="title">
+                             KB 업무 지원 챗봇
+                         </div>
+                         <div class="description">
+                             업무 관련 질문 및 지원
+                         </div>
+                     </div>
+                     <div class="credit_assessment_container">
+                         <div class="icon">
+                             <i class="bi bi-shield-check"></i>
+                         </div>
+                         <div class="title">
+                             개인/기업 여신심사
+                         </div>
+                         <div class="description">
+                             AI 기반 고객 심사 및 분석
+                         </div>
+                     </div>
+                     <div class="schedule_management_container">
+                         <div class="icon">
+                             <i class="bi bi-calendar3"></i>
+                         </div>
+                         <div class="title">
+                             일정 관리
+                         </div>
+                         <div class="description">
+                             업무 일정 및 미팅 관리
+                         </div>
+                     </div>
+
+                </div>
+                <div class="calendar_container">
+                    {% include 'dashboard/calendar.html' %}
+                </div>
+            </div>
+            
+            <!-- 3번째 줄 -->
+            <div class="third_row">
+                <div class="exchange_rate_container">
+                    {% include 'dashboard/exchange_rate.html' %}
+                </div>
+                <div class="interest_rate_container">
+                    {% include 'dashboard/interest_rate.html' %}
+                </div>
+            </div>
+
+            <div class="fourth_row">
+                <div class="transaction_status_container">
+                    {% include 'dashboard/transaction_status.html' %}
+                </div>
+                <div class="notification_container">
+                    {% include 'dashboard/notification.html' %}
+                </div>
+            </div>
+            
+        </div>
+        <div class="fourth_column">
+            
+            <!-- 최근 활동 카드 -->
+            {% include 'dashboard/recent_activity.html' %}
+            
+            <!-- 목표 달성 카드 -->
+            {% include 'dashboard/goal_achievement.html' %}
+            
+            <!-- 업무 현황 카드 -->
+            {% include 'dashboard/work_distribution.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/dashboard/dashboard.js' %}"></script>
+<script src="{% static 'js/dashboard/calendar.js' %}"></script>
+<script src="{% static 'js/dashboard/exchange_rate.js' %}"></script>
+<script src="{% static 'js/dashboard/interest_rate.js' %}"></script>
+<script src="{% static 'js/dashboard/todo.js' %}"></script>
+<script src="{% static 'js/dashboard/transaction_status.js' %}"></script>
+<script src="{% static 'js/dashboard/notification.js' %}"></script>
+<script src="{% static 'js/partials/team_channel_column.js' %}"></script>
+{% endblock %}

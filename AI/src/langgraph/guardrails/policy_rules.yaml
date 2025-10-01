@@ -1,0 +1,90 @@
+version: 2
+updated_at: "2025-09-19"
+
+quality:
+  accuracy_check:
+    enabled: true
+    # 숫자/사실성 주장 트리거
+    triggers:
+      keywords: ["전망", "통계", "누적", "영업이익", "매출", "분기", "금감원", "전자공시", "DART", "가트너", "블룸버그"]
+      regex:
+        - "\\d{4}년(\\s*\\d{1,2}분기)?"
+        - "\\d{1,3}(,\\d{3})*(\\.\\d+)?\\s*(원|억원|조원|%)"
+    # 상품 설명 컨텍스트 감지 (모든 상품에 적용)
+    context_detection:
+      product_indicators: ["상품", "대출", "금리", "한도", "수수료", "약관", "조건", "자격", "대상", "신청", "서류", "혜택", "리워드", "적립", "할인", "우대", "특별", "신규", "기존", "고객", "회원", "가입", "신청", "이용", "사용", "이용", "가능", "제공", "지원", "혜택", "혜택", "혜택"]
+      banking_terms: ["은행", "금융", "계좌", "카드", "보험", "투자", "펀드", "적금", "예금", "대출", "신용", "담보", "보증", "보험", "보장", "보상", "배상", "손해", "위험", "리스크", "안전", "보호", "보장"]
+    actions:
+      require_date_if_numeric_claim: true     # 수치 주장에 기준일/기간을 한 줄로 덧붙임
+      unverifiable_numeric_softfix: true      # 검증 곤란 수치는 단정→완화(예: "~로 알려져 있습니다")
+      add_recency_hint_if_date_missing: true  # 날짜 없으면 "기준 시점은 달라질 수 있어요" 한 줄
+
+  completeness_check:
+    enabled: true
+    required_sections_by_category:
+      COMPANY_PRODUCTS_CATEGORY:
+        - 자격요건/대상
+        - 금리/한도 범위(조건부)
+        - 비용/수수료/지연배상 가능성
+        - 주요 리스크/유의사항
+        - 신청 방법/필요서류
+      COMPANY_RULES_CATEGORY:
+        - 목적/적용범위
+        - 절차/예외/승인권자
+        - 관련 상위 규정/법령
+      INDUSTRY_POLICY_CATEGORY:
+        - 목적/주요 내용
+        - 시행 시기/적용 대상
+        - 영향/준수사항
+    actions:
+      when_missing: ["add_missing_notice", "suggest_followups"]
+
+structure:
+  emphasis:
+    enabled: true
+    priority_keywords:
+      혜택: 3
+      수수료: 3
+      금리: 3
+      한도: 2
+      리스크: 3
+      주의: 3
+      철회권: 2
+      해지권: 2
+      최신: 2
+  response_template:
+    max_lines: 5
+    sections_order: ["main", "disclosures"]  # ✅ 출처 섹션 제거
+
+terminology:
+  normalization:
+    enabled: true
+    glossary_file: "config/glossary_terms.yaml"
+    apply_mode: "soft_fix"
+    annotate_on_change: false
+  koreanization:
+    enabled: true
+    rules:
+      - pattern: "\\b(Inflation|Premium|Seed money|Default Option)\\b"
+        replacement_template: "{ko}({en})"
+        dictionary:
+          Inflation: "인플레이션"
+          Premium: "프리미엄"
+          "Seed money": "시드머니"
+          "Default Option": "디폴트 옵션(사전 지정 운용 제도)"
+
+templates:
+  interest_rate_reduction_denial:
+    title: "[KB국민은행] 금리인하 요구권 거절 안내"
+    lines:
+      - "{고객명} 고객님의 금리인하 요구권 심사 결과, 신청이 거절되었습니다."
+      - "KB국민은행 기준, 다음과 같은 금리인하 기준이 충족되지 않았기 때문입니다."
+      - "1) 내부 신용 등급이 개선되지 않음"
+      - "2) 내부 신용 등급이 금리 인하가 가능할 정도로 상승하지 않음"
+      - "3) 내부 신용 원가가 동일/유사하여 인하 요인이 없음"
+
+disclosures_texts:
+  INFO_GENERAL: "본 답변은 내부 문서 기반의 일반 정보입니다. 실제 조건은 신용·담보·상품 및 법령 변경에 따라 달라질 수 있습니다."
+  RISK_BASED: "여신 취급 여부와 조건은 심사(현금흐름·등급·담보 등) 및 내부 기준에 따라 결정됩니다."
+  VARIABILITY: "이자·수수료·지연배상금 등은 법령·약관 범위에서 변동될 수 있습니다."
+  RIGHTS: "일부 대출에는 대출계약 철회권·위법계약 해지권이 적용될 수 있습니다(대상·기한은 약관/법령 참조)."

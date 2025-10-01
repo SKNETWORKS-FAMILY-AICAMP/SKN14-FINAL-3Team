@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}KB국민은행 직원 업무시스템 - 챗봇{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chat_pdf_column.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pdf_modal.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- 챗봇 컨테이너 -->
+<div class="chatbot_container">
+    <div class="chatbot_content">
+        <!-- Team Channel Column (팀 채팅) -->
+        {% include 'partials/team_channel_column.html' %}
+        
+        <!-- Chat History Column (채팅 히스토리) -->
+        {% include 'chatbot/chat_history_column.html' %}
+
+        <!-- 메인 챗봇 컬럼 include -->
+        {% include 'chatbot/main_chatbot_column.html' %}
+
+        <!-- Chat PDF Column (PDF 참조) -->
+        {% include 'chatbot/chat_pdf_column.html' %}
+
+    </div>
+</div>
+
+<!-- PDF 모달 include -->
+{% include 'chatbot/pdf_modal.html' %}
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/partials/team_channel_column.js' %}"></script>
+<script src="{% static 'js/chatbot/chat_history_column.js' %}"></script>
+<script src="{% static 'js/chatbot/chat_pdf_column.js' %}"></script>
+<script src="{% static 'js/chatbot/pdf_modal.js' %}"></script>
+<script src="{% static 'js/chatbot/main_chatbot.js' %}"></script>
+{% endblock %}

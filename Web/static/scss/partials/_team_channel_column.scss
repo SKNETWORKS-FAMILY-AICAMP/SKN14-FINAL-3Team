@@ -1,0 +1,566 @@
+// Team Channel Column Component
+.team_channel_column {
+    grid-column: 1;
+    width: 100%;
+    background-color: $kb-dark;
+    color: $kb-text-white;
+    display: flex;
+    flex-direction: column;
+    padding: ptr(10px);
+    gap: ptr(10px);
+    height: 100%;
+    overflow: hidden;
+    transition: width 0.3s ease;
+    cursor: pointer;
+    
+    // 축소된 상태 (기본)
+    &:not(.expanded) {
+        width: ptr(48);
+        
+        // 부모 grid 컬럼 크기 조정
+        .dashboard_content {
+            grid-template-columns: ptr(48px) ptr(200px) 1fr ptr(200px);
+        }
+        
+        // 모든 텍스트 숨기기
+        h3,
+        .channel_name,
+        .member_name,
+        .member_dept,
+        .sender_name,
+        .message_time,
+        .message_content,
+        .team_info p,
+        .team_info h2,
+        .notification_badge,
+        .member_action {
+            display: none !important;
+        }
+        
+        // 패딩 제거
+        .member_item {
+            padding: 0 !important;
+        }
+        
+        // 하단 네비게이션과 메시지 입력창 숨기기
+        .bottom_nav,
+        .message_input_area,
+        .chat_input {
+            display: none !important;
+        }
+        
+        // 채팅 헤더도 숨기기
+        .chat_header {
+            display: none !important;
+        }
+        
+        // 스크롤 제거하고 모든 팀원 보여주기
+        .member_list {
+            overflow: visible !important;
+            max-height: none !important;
+            gap: ptr(10px) !important;
+        }
+        
+        // 채널 리스트 가로 스크롤 제거 및 # 아이콘 크기 조정
+        .channel_list {
+            overflow: visible !important;
+            
+            .channel_item {
+                justify-content: center !important;
+                
+                .channel_icon {
+                    font-size: ptr(12) !important;
+                    margin-right: 0 !important;
+                }
+            }
+        }
+        
+        // 팀 아이콘 크기 고정
+        .team_header .team_icon,
+        .team_icon {
+            width: 22px !important;
+            height: 22px !important;
+            font-size: 12px !important;
+            margin-right: 0 !important;
+            min-width: 22px !important;
+            min-height: 22px !important;
+        }
+    }
+    
+    // 확장된 상태
+    &.expanded {
+        width: ptr(200);
+        
+        // 부모 grid 컬럼 크기 조정
+        .dashboard_content {
+            grid-template-columns: ptr(200) ptr(50px) 1fr ptr(200px);
+        }
+    }
+    
+    // 팀 채팅 헤더
+    .team_chat_header {
+        display: flex;
+        align-items: center;
+        gap: ptr(10px);
+        border-bottom: 1px solid $kb-dark-light-line;
+        padding-bottom: ptr(10px);
+        position: relative;
+        
+        .team_icon {
+            @include flex-center;
+            width: ptr(20px);
+            height: ptr(20px);
+            background-color: $kb-yellow;
+            border-radius: 50%;
+            color: $kb-dark;
+            
+            i {
+                font-size: ptr(10px);
+            }
+        }
+        
+        .team_info {
+            flex: 1;
+            
+            h2 {
+                font-size: ptr(10px);
+                font-weight: 400;
+                margin: 0;
+                color: $kb-text-white;
+            }
+            
+            p {
+                font-size: ptr(10px);
+                margin: 0;
+                color: $kb-text-white-light;
+            }
+        }
+        
+        .collapse_btn {
+            background: none;
+            border: none;
+            color: $kb-text-white-light;
+            cursor: pointer;
+            padding: ptr(4px);
+            border-radius: ptr(4px);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: ptr(20px);
+            height: ptr(20px);
+            
+            &:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                color: $kb-text-white;
+            }
+            
+            i {
+                font-size: ptr(12px);
+            }
+        }
+    }
+    
+    // 채널 섹션 (고정 크기 - 채널 목록)
+    .channels_section {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        
+        h3 {
+            font-size: ptr(10px);
+            font-weight: 400;
+            margin: 0 0 ptr(10px) 0;
+            color: $kb-text-white-light;
+            text-transform: uppercase;
+            letter-spacing: ptr(0.5px);
+            flex: 0 0 auto;
+        }
+
+        .channel_list {
+            display: flex;
+            flex-direction: column;
+            gap: ptr(4px);
+            flex: 1;
+            overflow-y: auto;
+            padding-right: ptr(5px);
+            
+            &::-webkit-scrollbar {
+                width: ptr(4px);
+            }
+            
+            &::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: ptr(2px);
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: ptr(2px);
+            }
+            
+            &::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .channel_item {
+            display: flex;
+            align-items: center;
+            padding: ptr(2px) ptr(12px);
+            border-radius: ptr(6px);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            
+            &:hover {
+                background-color: $kb-dark-light-line;
+            }
+            
+            &.active {
+                background-color: $kb-dark-light-line;
+                
+                .channel_icon {
+                    color: $kb-yellow;
+                }
+            }
+            
+            .channel_icon {
+                font-size: ptr(12px);
+                font-weight: 600;
+                color: $kb-text-white-light;
+                margin-right: ptr(8px);
+                flex-shrink: 0;
+            }
+            
+            .channel_name {
+                font-size: ptr(12px);
+                color: $kb-text-white;
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            .notification_badge {
+                @include flex-center;
+                background-color: $positive;
+                color: white;
+                font-size: ptr(8px);
+                width: ptr(14px);
+                height: ptr(14px);
+                border-radius: ptr(10px);
+                font-weight: 600;
+                margin-left: auto;
+                flex-shrink: 0;
+            }
+        }
+    }
+    
+    // 팀원 섹션 (고정 크기 - 팀원 목록)
+    .members_section {
+        flex: 0 0 auto;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        
+        h3 {
+            font-size: ptr(10px);
+            font-weight: 400;
+            margin: 0 0 ptr(10px) 0;
+            color: $kb-text-white-light;
+            text-transform: uppercase;
+            letter-spacing: ptr(0.5px);
+            flex: 0 0 auto;
+        }
+
+        .member_list {
+            display: flex;
+            flex-direction: column;
+            gap: ptr(4px);
+            flex: 1;
+            overflow-y: auto;
+            padding-right: ptr(5px);
+            max-height: ptr(130px);
+            
+            &::-webkit-scrollbar {
+                width: ptr(4px);
+            }
+            
+            &::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: ptr(2px);
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: ptr(2px);
+            }
+            
+            &::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+
+        .member_item {
+            display: flex;
+            align-items: center;
+            padding: ptr(2px) ptr(4px);
+            border-radius: ptr(6px);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            gap: ptr(5px);
+            
+            &:hover {
+                background-color: $kb-dark-light-line;
+                
+                .member_action {
+                    opacity: 1;
+                }
+            }
+            
+            .member_avatar {
+                position: relative;
+                width: ptr(25px);
+                height: ptr(25px);
+                background-color: rgba(255, 255, 255, 0.2);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: ptr(8px);
+                flex-shrink: 0;
+                
+                .avatar_text {
+                    font-size: ptr(10px);
+                    font-weight: 600;
+                    color: white;
+                }
+                
+                .status_dot {
+                    position: absolute;
+                    bottom: -0.5px;
+                    right: -0.5px;
+                    width: ptr(8px);
+                    height: ptr(8px);
+                    border-radius: 50%;
+                    border: ptr(1.5px) solid $kb-dark;
+                    
+                    &.green {
+                        background-color: $positive;
+                    }
+                    
+                    &.yellow {
+                        background-color: $kb-yellow;
+                    }
+                    
+                    &.red {
+                        background-color: $danger;
+                    }
+                    
+                    &.grey {
+                        background-color: #6c757d;
+                    }
+                }
+            }
+            
+            .member_info {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                min-width: 0;
+                
+                .member_name {
+                    font-size: ptr(10px);
+                    font-weight: 500;
+                    color: $kb-text-white;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                
+                .member_dept {
+                    font-size: ptr(8px);
+                    color: $kb-text-white-light;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+            
+            .member_action {
+                @include flex-center;
+                padding-right: ptr(5px);
+                opacity: 0;
+                transition: opacity 0.2s ease;
+                margin-left: auto;
+                flex-shrink: 0;
+                
+                i {
+                    font-size: ptr(10px);
+                    color: $kb-text-white-light;
+                }
+            }
+        }
+    }
+    
+    // 채팅 컨테이너 (나머지 공간)
+    .chat_container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        background-color: darken($kb-dark, 2%);
+        border-radius: ptr(6px);
+        overflow: hidden;
+        
+        .chat_header {
+            padding: ptr(4px) ptr(8px);
+            background-color: darken($kb-dark, 4%);
+            border-bottom: 1px solid $kb-dark-light-line;
+            flex: 0 0 auto;
+            
+            .chat_title {
+                display: flex;
+                align-items: center;
+                gap: ptr(6px);
+                
+                .channel_icon {
+                    font-size: ptr(12px);
+                    font-weight: 600;
+                    color: $kb-yellow;
+                }
+                
+                .channel_name {
+                    font-size: ptr(10px);
+                    font-weight: 400;
+                    color: $kb-text-white;
+                }
+            }
+        }
+        
+        .chat_messages {
+            flex: 1;
+            padding: ptr(8px) ptr(12px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: ptr(8px);
+            min-height: 0;
+            
+            &::-webkit-scrollbar {
+                width: ptr(4px);
+            }
+            
+            &::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: ptr(2px);
+            }
+            
+            &::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: ptr(2px);
+            }
+            
+            &::-webkit-scrollbar-thumb:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+            
+            .message {
+                .message_info {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(6px);
+                    margin-bottom: ptr(2px);
+                    
+                    .sender_name {
+                        font-size: ptr(9px);
+                        font-weight: 600;
+                        color: $kb-yellow;
+                    }
+                    
+                    .message_time {
+                        font-size: ptr(8px);
+                        color: $kb-text-white-light;
+                    }
+                }
+                
+                .message_content {
+                    font-size: ptr(10px);
+                    color: $kb-text-white;
+                    line-height: 1.3;
+                    word-wrap: break-word;
+                }
+            }
+        }
+        
+        .bottom_nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: darken($kb-dark, 4%);
+            border-top: 1px solid $kb-dark-light-line;
+            flex: 0 0 auto;
+            padding: ptr(3px);
+            
+            .nav_btn {
+                @include flex-center;
+                background: none;
+                border: none;
+                color: $kb-text-white-light;
+                cursor: pointer;
+                border-radius: ptr(4px);
+                transition: all 0.2s ease;
+                padding: ptr(2px) ptr(8px);
+                
+                &:hover {
+                    background-color: $kb-dark-light-line;
+                    color: $kb-text-white;
+                }
+                
+                i {
+                    font-size: ptr(10px);
+                }
+            }
+        }
+        
+        .message_input_area {
+            padding: ptr(3px) ptr(3px);
+            background-color: darken($kb-dark, 4%);
+            border-top: 1px solid $kb-dark-light-line;
+            flex: 0 0 auto;
+            
+            .message_input {
+                width: 100%;
+                padding: ptr(6px) ptr(8px);
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 1px solid $kb-dark-light-line;
+                border-radius: ptr(4px);
+                color: $kb-text-white;
+                font-size: ptr(10px);
+                
+                &::placeholder {
+                    color: $kb-text-white-light;
+                }
+                
+                &:focus {
+                    outline: none;
+                    border-color: $kb-yellow;
+                    background-color: rgba(255, 255, 255, 0.15);
+                }
+            }
+            
+            .send_btn {
+                display: none; // 입력창에 엔터키로 전송
+            }
+        }
+    }
+}
+
+// 반응형 디자인
+@include mobile {
+    .team_channel_column {
+        width: 100%;
+        max-width: 280px;
+    }
+}

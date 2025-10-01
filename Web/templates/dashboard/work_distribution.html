@@ -1,0 +1,65 @@
+{% load static %}
+
+<!-- 업무 분포표 위젯 -->
+<div class="work-distribution-widget">
+    <div class="widget-header">
+        <div class="header-left">
+            <span class="header-icon">
+            </span>
+            <span class="header-title">업무 분포표</span>
+        </div>
+        <div class="header-right">
+            <div class="chart-type-selector">
+                <button class="chart-btn active" data-type="doughnut">
+                    <i class="bi bi-pie-chart"></i>
+                </button>
+                <button class="chart-btn " data-type="bar">
+                    <i class="bi bi-bar-chart"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="distribution-content">
+        <!-- 왼쪽: 차트 -->
+        <div class="chart-container">
+            
+            <!-- 도넛 차트  -->
+            <div class="doughnut-chart">
+                <div class="chart-circle"></div>
+                <div class="chart-center">
+                    <div class="center-value">190</div>
+                    <div class="center-label">총 상담</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 오른쪽: 상담 데이터 그리드 -->
+        <div class="consultation-grid">
+            <div class="consultation-item">
+                <div class="consultation-label">대출 상담</div>
+                <div class="consultation-value">45</div>
+            </div>
+            <div class="consultation-item">
+                <div class="consultation-label">예금 상담</div>
+                <div class="consultation-value">32</div>
+            </div>
+            <div class="consultation-item">
+                <div class="consultation-label">신용 상담</div>
+                <div class="consultation-value">18</div>
+            </div>
+            <div class="consultation-item">
+                <div class="consultation-label">보험 상담</div>
+                <div class="consultation-value">28</div>
+            </div>
+            <div class="consultation-item">
+                <div class="consultation-label">투자 상담</div>
+                <div class="consultation-value">52</div>
+            </div>
+            <div class="consultation-item">
+                <div class="consultation-label">기타 상담</div>
+                <div class="consultation-value">15</div>
+            </div>
+        </div>
+    </div>
+</div>

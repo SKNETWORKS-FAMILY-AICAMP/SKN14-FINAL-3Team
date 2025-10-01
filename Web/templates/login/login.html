@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}KB국민은행 직원 업무시스템 - 로그인{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- Main Content -->
+<div class="login-page">
+    <div class="login-main-content">
+        <div class="login-content-wrapper">
+            <!-- Left Section - Information -->
+            <section class="info-section">
+                <div class="info-content">
+                    <h1 class="main-title">
+                        KB국민은행 <span class="highlight">직원 업무</span>플랫폼
+                    </h1>
+                    <div class="description-wrapper">
+                        <div class="description">
+                            은행 업무 처리와 고객 관리를 위한 통합 직원 전용 플랫폼입니다.
+                        </div>
+                        <div class="description">
+                            여신 상담·처리 업무를 LLM 기반으로 지원하여
+                        </div>
+                        <div class="description">
+                            금융 QnA, 문서 자동 검색, 내규 체크로 처리 시간을 단축하고 오류를 최소화합니다.
+                        </div>
+                    </div>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="bi bi-people-fill"></i>
+                                </div>
+                                <h3 class="feature-title">고객관리</h3>
+                                <p>통합 고객 정보 시스템</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="bi bi-briefcase-fill"></i>
+                                </div>
+                                <h3>업무처리</h3>
+                                <p>효율적인 금융업무 처리</p>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="feature-card">
+                                <div class="feature-icon">
+                                    <i class="bi bi-graph-up"></i>
+                                </div>
+                                <h3>분석</h3>
+                                <p>실시간 업무 현황 분석</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Section - Login Form -->
+            <section class="login-section">
+                <div class="login-container">
+                    <div class="login-header">
+                        <img src="{% static 'images/KB_SymbolMark.png' %}" alt="KB국민은행" class="kb-logo-small">
+                        <p>KB국민은행 내부 시스템</p>
+                    </div>
+                    
+                    <ul class="nav nav-tabs" id="loginTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {% if active_tab == 'employee' %}active{% endif %}" id="employee-tab" data-bs-toggle="tab" data-bs-target="#employee" type="button" role="tab">직원 로그인</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {% if active_tab == 'admin' %}active{% endif %}" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab">관리자 로그인</button>
+                        </li>
+                    </ul>
+                    
+                    
+                    <div class="tab-content" id="loginTabContent">
+                        <div class="tab-pane fade {% if active_tab == 'employee' %}show active{% endif %}" id="employee" role="tabpanel">
+                            <form method="post" class="login-form" novalidate>
+                                {% csrf_token %}
+                                <div class="mb-3-form-wrapper">
+                                    <div class="mb-3 form-row">
+                                        <label for="employee_id" class="form-label">사번</label>
+                                        <input type="text" class="form-control" id="employee_id" name="employee_id" placeholder="사번을 입력하세요 (예: KB2024001)">
+                                    </div>
+                                    
+                                    <div class="mb-3 form-row">
+                                        <label for="password" class="form-label">비밀번호</label>
+                                        <div class="input-with-icon">
+                                            <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력하세요">
+                                            <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
+                                                <i class="bi bi-eye-slash" id="passwordToggleIcon"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="save_id" name="save_id">
+                                    <label class="form-check-label" for="save_id">
+                                        사번 저장
+                                    </label>
+                                    <span id="loginError" class="error-message" style="display: none;"></span>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-warning w-100 btn-lg">로그인</button>
+                            </form>
+                        </div>
+                        
+                        <div class="tab-pane fade {% if active_tab == 'admin' %}show active{% endif %}" id="admin" role="tabpanel">
+                            <form method="post" class="login-form" novalidate>
+                                {% csrf_token %}
+                                <div class="mb-3-form-wrapper">
+                                    <div class="mb-3 form-row">
+                                        <label for="admin_id" class="form-label">관리자 ID</label>
+                                        <input type="text" class="form-control" id="admin_id" name="admin_id" placeholder="관리자 ID를 입력하세요">
+                                    </div>
+                                    
+                                    <div class="mb-3 form-row">
+                                        <label for="admin_password" class="form-label">비밀번호</label>
+                                        <div class="input-with-icon">
+                                            <input type="password" class="form-control" id="admin_password" name="admin_password" placeholder="비밀번호를 입력하세요">
+                                            <button class="btn btn-outline-secondary" type="button" onclick="toggleAdminPassword()">
+                                                <i class="bi bi-eye-slash" id="adminPasswordToggleIcon"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="save_admin_id" name="save_admin_id">
+                                    <label class="form-check-label" for="save_admin_id">
+                                        관리자 ID 저장
+                                    </label>
+                                    <span id="adminLoginError" class="error-message"></span>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-warning w-100 btn-lg">관리자 로그인</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="login-links">
+                        <a href="#" class="link">사번 찾기</a>
+                        <a href="#" class="link">비밀번호 초기화</a>
+                        <a href="#" class="link">IT 지원</a>
+                    </div>
+                    
+                    <div class="security-notice">
+                        <div class="security-header">
+                            <i class="bi bi-shield-lock"></i>
+                            <h4>직원 보안 수칙</h4>
+                        </div>
+                        <ul class="security-rules">
+                            <li>개인 사번과 비밀번호는 절대 타인과 공유하지 마세요.</li>
+                            <li>업무 완료 후 반드시 로그아웃하세요.</li>
+                            <li>의심스러운 접근 시도는 즉시 IT팀에 신고하세요.</li>
+                            <li>정기적으로 비밀번호를 변경하고, 복잡한 조합을 사용하세요.</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/login/login.js' %}"></script>
+{% if login_error %}
+<script>
+    // Django에서 전달받은 데이터를 JavaScript 변수로 설정
+    window.loginError = '{{ login_error }}';
+    window.activeTab = '{{ active_tab|default:"employee" }}';
+    
+    // 페이지 로드 후 에러 메시지 표시
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.loginError) {
+            if (window.activeTab === 'admin') {
+                showAdminLoginError(window.loginError);
+            } else {
+                showLoginError(window.loginError);
+            }
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

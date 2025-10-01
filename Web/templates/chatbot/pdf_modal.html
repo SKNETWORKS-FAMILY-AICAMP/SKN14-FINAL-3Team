@@ -1,0 +1,37 @@
+<!-- PDF 모달 팝업 (화면 최상위) -->
+<div id="pdfModal" class="pdf-modal" style="display: none;">
+    <div class="pdf-modal-overlay"></div>
+    <div class="pdf-modal-content">
+        <div class="pdf-modal-header">
+            <div class="pdf-modal-title">
+                <i class="bi bi-file-earmark-pdf-fill"></i>
+                <span id="pdfModalTitle">PDF 문서</span>
+            </div>
+            <div class="pdf-modal-controls">
+                <button class="pdf-modal-expand" id="pdfModalExpand">
+                    <i class="bi bi-arrows-angle-expand"></i>
+                </button>
+                <button class="pdf-modal-close" id="pdfModalClose">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="pdf-modal-body">
+            <div class="pdf-modal-viewer-container">
+                <div class="pdf-loading" id="pdfModalLoading">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    <div>PDF를 불러오는 중...</div>
+                </div>
+                
+                <div class="pdf-error" id="pdfModalError" style="display: none;">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <h3>PDF를 불러올 수 없습니다</h3>
+                    <p>파일이 존재하지 않거나 접근 권한이 없습니다.</p>
+                </div>
+                
+                <iframe class="pdf-modal-viewer" id="pdfModalViewer" style="display: none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,85 @@
+<!-- Interest Rate Widget -->
+<div class="interest-rate-widget">
+    <div class="interest-rate-header">
+        <div class="header-left">
+            <span class="header-icon">
+            </span>
+            <span class="header-title">현재 금리</span>
+        </div>
+        <div class="header-right">
+            <span class="last-update" id="last-update">마지막 업데이트: <script>document.write(new Date().toLocaleTimeString('ko-KR', {hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit'}));</script></span>
+            <button class="refresh-btn" id="interest-refresh-btn">
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="interest-rate-list">
+        <div class="rate-item" data-type="deposit">
+            <div class="rate-type">
+                <i class="bi bi-piggy-bank"></i>
+                <span class="rate-name">정기예금</span>
+            </div>
+            <div class="rate-value">
+                <span class="rate-number" id="deposit-rate">3.25</span>
+                <span class="rate-unit">%</span>
+            </div>
+        </div>
+        
+        <div class="rate-item" data-type="mortgage">
+            <div class="rate-type">
+                <i class="bi bi-credit-card"></i>
+                <span class="rate-name">주택담보대출</span>
+            </div>
+            <div class="rate-value">
+                <span class="rate-number" id="mortgage-rate">4.15</span>
+                <span class="rate-unit">%</span>
+            </div>
+        </div>
+        
+        <div class="rate-item" data-type="credit">
+            <div class="rate-type">
+                <i class="bi bi-bank"></i>
+                <span class="rate-name">신용대출</span>
+            </div>
+            <div class="rate-value">
+                <span class="rate-number" id="credit-rate">5.85</span>
+                <span class="rate-unit">%</span>
+            </div>
+        </div>
+        
+        <div class="rate-item" data-type="savings">
+            <div class="rate-type">
+                <i class="bi bi-graph-up"></i>
+                <span class="rate-name">적금</span>
+            </div>
+            <div class="rate-value">
+                <span class="rate-number" id="savings-rate">3.45</span>
+                <span class="rate-unit">%</span>
+            </div>
+        </div>
+        
+        <div class="rate-item" data-type="business">
+            <div class="rate-type">
+                <i class="bi bi-cash-coin"></i>
+                <span class="rate-name">기업대출</span>
+            </div>
+            <div class="rate-value">
+                <span class="rate-number" id="business-rate">4.75</span>
+                <span class="rate-unit">%</span>
+            </div>
+        </div>
+        
+        <div class="rate-item" data-type="foreign">
+            <div class="rate-type">
+                <i class="bi bi-currency-dollar"></i>
+                <span class="rate-name">외화예금</span>
+            </div>
+            <div class="rate-value">
+                <span class="rate-number" id="foreign-rate">2.95</span>
+                <span class="rate-unit">%</span>
+            </div>
+        </div>
+    </div>
+    
+</div>

@@ -1,0 +1,132 @@
+@import '../base';
+
+// 목표 달성률 위젯 스타일
+.goal-achievement-widget {
+    border-radius: ptr(8px);
+    padding: ptr(10px);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $kb-border;
+
+    .widget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: ptr(8px);
+        
+        .header-left {
+            padding-left: ptr(5px);
+            display: flex;
+            align-items: center;
+            gap: ptr(5px);
+            
+            .header-icon {
+                height: ptr(14px);
+                border: ptr(2px) solid $kb-dark;
+            }
+            
+            .header-title {
+                font-size: ptr(12px);
+                font-weight: 600;
+                color: $kb-dark;
+            }
+        }   
+    }
+    
+    .achievement-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .goal-categories {
+            display: flex;
+            flex-direction: column;
+            gap: ptr(10px);
+            
+            .goal-item {
+                display: flex;
+                align-items: center;
+                gap: ptr(8px);
+                
+                .goal-label {
+                    width: ptr(25px);
+                    font-size: ptr(10px);
+                    font-weight: 500;
+                    color: $kb-dark;
+                    flex-shrink: 0;
+                }
+                
+                .progress-bar {
+                    flex: 1;
+                    height: 6px;
+                    background-color: $kb-border;
+                    border-radius: 3px;
+                    overflow: hidden;
+                    position: relative;
+                    
+                    .progress-fill {
+                        height: 100%;
+                        background: $kb-dark;
+                        border-radius: 3px;
+                        transition: width 0.5s ease;
+                        position: relative;
+                        
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+                            animation: shimmer 2s infinite;
+                        }
+                    }
+                }
+                
+                .goal-percentage {
+                    width: ptr(30px);
+                    font-size: ptr(10px);
+                    font-weight: 600;
+                    color: $kb-dark;
+                    text-align: right;
+                    flex-shrink: 0;
+                }
+            }
+        }
+    }
+}
+
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .goal-achievement-widget {
+        .achievement-content {
+            .goal-categories {
+                gap: ptr(10px);
+                
+                .goal-item {
+                    gap: ptr(8px);
+                    
+                    .goal-label {
+                        width: ptr(35px);
+                        font-size: ptr(11px);
+                    }
+                    
+                    .progress-bar {
+                        height: 6px;
+                    }
+                    
+                    .goal-percentage {
+                        width: ptr(30px);
+                        font-size: ptr(11px);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}KB국민은행 직원 업무시스템 - 여신 심사사{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/credit_assessment.css' %}">
+    <link rel="stylesheet" href="{% static 'css/pdf_modal.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<!-- 챗봇 컨테이너 -->
+<div class="credit_assessment_container">
+    <div class="credit_assessment_content">
+        <!-- Team Channel Column (팀 채팅) -->
+        {% include 'partials/team_channel_column.html' %}
+        
+        <!-- 두 번째 컬럼 - 고객 정보 입력 및 대출 정보 입력 -->
+        {% include 'credit_assessment/customer_input_column.html' %}
+        
+        <!-- 세 번째 컬럼 - 심사 결과 표시 영역 -->
+        {% include 'credit_assessment/assessment_results_column.html' %}
+        
+        <!-- 네 번째 컬럼 - 저장된 보고서 목록 -->
+        {% include 'credit_assessment/reports_column.html' %}
+    </div>
+</div>
+<!-- PDF 모달 팝업 (화면 최상위) -->
+<div id="pdfModal" class="pdf-modal" style="display: none;">
+    <div class="pdf-modal-overlay"></div>
+    <div class="pdf-modal-content">
+        <div class="pdf-modal-header">
+            <div class="pdf-modal-title">
+                <i class="bi bi-file-earmark-pdf-fill"></i>
+                <span id="pdfModalTitle">PDF 문서</span>
+            </div>
+            <div class="pdf-modal-controls">
+                <button class="pdf-modal-expand" id="pdfModalExpand">
+                    <i class="bi bi-arrows-angle-expand"></i>
+                </button>
+                <button class="pdf-modal-close" id="pdfModalClose">
+                    <i class="bi bi-x"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="pdf-modal-body">
+            <div class="pdf-modal-viewer-container">
+                <div class="pdf-loading" id="pdfModalLoading">
+                    <i class="bi bi-arrow-clockwise"></i>
+                    <div>PDF를 불러오는 중...</div>
+                </div>
+                
+                <div class="pdf-error" id="pdfModalError" style="display: none;">
+                    <i class="bi bi-exclamation-triangle"></i>
+                    <h3>PDF를 불러올 수 없습니다</h3>
+                    <p>파일이 존재하지 않거나 접근 권한이 없습니다.</p>
+                </div>
+                
+                <iframe class="pdf-modal-viewer" id="pdfModalViewer" style="display: none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+<script src="{% static 'js/partials/team_channel_column.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="{% static 'js/chatbot/pdf_modal.js' %}"></script>
+<script src="{% static 'js/credit_assessment/customer_input_column.js' %}"></script>
+<script src="{% static 'js/credit_assessment/pdf_generator.js' %}"></script>
+<script src="{% static 'js/credit_assessment/credit_assessment.js' %}"></script>
+<script src="{% static 'js/credit_assessment/reports_column.js' %}"></script>
+{% endblock %}

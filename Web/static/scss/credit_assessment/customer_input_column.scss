@@ -1,0 +1,587 @@
+@import '../base';
+
+// 두 번째 컬럼 - 고객 정보 입력 및 대출 정보 입력
+.second_column {
+    grid-column: 2;
+    min-height: 0;
+    padding: ptr(20px);
+    display: flex;
+    flex-direction: column;
+    gap: ptr(10px);
+    border-right: ptr(1px) solid $kb-border;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
+    // 커스텀 스크롤바 스타일 (챗봇과 동일)
+    &::-webkit-scrollbar {
+        width: ptr(6px);
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgba($kb-text-light, 0.3);
+        border-radius: ptr(3px);
+        transition: background 0.2s ease;
+        
+        &:hover {
+            background: rgba($kb-text-light, 0.5);
+        }
+    }
+    
+    &::-webkit-scrollbar-thumb:active {
+        background: rgba($kb-text-light, 0.7);
+    }
+
+    // 첫 번째 row - 고객 정보 입력
+    .first_row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        background: $bg-light;
+        gap: ptr(10px);
+         
+        .credit_assessment_title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: ptr(14px);
+            font-weight: 600;
+            color: $kb-dark;
+            
+            .assessment_type_toggle {
+                display: flex;
+                background: $kb-background-gray;
+                border-radius: ptr(8px);
+                padding: ptr(1px);
+                gap: ptr(1px);
+                
+                .toggle_button {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(1px);
+                    padding: ptr(3px) ptr(8px);
+                    border: none;
+                    background: transparent;
+                    border-radius: ptr(6px);
+                    font-size: ptr(9px);
+                    font-weight: 500;
+                    color: $kb-text-light;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    min-width: ptr(32px);
+                    
+                    i {
+                        font-size: ptr(8px);
+                    }
+                    
+                    span {
+                        font-size: ptr(8px);
+                    }
+                    
+                    &:hover {
+                        background: rgba($kb-dark, 0.1);
+                        color: $kb-text-dark;
+                    }
+                    
+                    &.active {
+                        background: $kb-dark;
+                        color: $kb-text-white;
+                    }
+                }
+            }
+        }
+        
+        .customer_info_header {
+            font-size: ptr(12px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: ptr(5px);
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+            }
+            
+            .header_icon {
+                font-size: ptr(14px);
+                color: $kb-dark;
+                margin-right: ptr(4px);
+            }
+            
+            .header_title {
+                flex: 1;
+                font-size: ptr(11px);
+                font-weight: 600;
+                color: $kb-dark;
+            }
+            
+            .customer_type_toggle {
+                display: flex;
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: ptr(4px);
+                padding: ptr(2px);
+                border: 1px solid $kb-border;
+                gap: ptr(2px);
+                
+                .toggle_btn {
+                    padding: ptr(4px) ptr(8px);
+                    border: none;
+                    background: transparent;
+                    color: $kb-dark;
+                    font-size: ptr(10px);
+                    font-weight: 500;
+                    border-radius: ptr(3px);
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    min-width: ptr(32px);
+                    text-align: center;
+                    
+                    &.active {
+                        background: $kb-dark;
+                        color: $kb-text-white;
+                        font-weight: 600;
+                    }
+                    
+                    &:hover:not(.active) {
+                        background: $kb-border;
+                   
+                    }
+                }
+            }
+        }
+        
+        .customer_display_header {
+            font-size: ptr(12px);
+            display: flex;
+            align-items: center;
+            gap: ptr(5px);
+            position: relative;
+            height: ptr(30px);
+            
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 1px;
+            }
+            
+            .header_icon {
+                font-size: ptr(14px);
+                color: $kb-dark;
+                margin-right: ptr(4px);
+            }
+            
+            .header_title {
+                flex: 1;
+                font-size: ptr(11px);
+                font-weight: 600;
+                color: $kb-dark;
+            }
+        }
+    }
+    
+    // customer_display_content 
+    .customer_display_content {
+        background: white;
+        margin-bottom: ptr(12px);
+        
+        .customer_info_grid {
+            display: flex;
+            flex-direction: column;
+            
+            .info_item {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: ptr(5px);
+              
+                &:hover {
+                    background: $kb-background-gray;
+                }
+                
+                .info_label {
+                    font-size: ptr(11px);
+                    font-weight: 600;
+                    color: $kb-text-light;
+                    min-width: ptr(50px);
+                }
+                
+                .info_value {
+                    font-size: ptr(11px);
+                    font-weight: 500;
+                    color: $kb-text-dark;
+                    flex: 1;
+                }
+            }
+            .info_item:not(:last-child) {
+                border-bottom: 1px solid $kb-border;
+            }
+        }
+    }
+    
+    .customer_info_content {
+            
+            .input_grid {
+                display: flex;
+                flex-direction: column;
+                gap: ptr(8px);
+                
+                .input_group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: ptr(3px);
+                    
+                    &.required {
+                        label::after {
+                            content: ' *';
+                            color: $danger;
+                            font-weight: 600;
+                        }
+                    }
+                    
+                    label {
+                        font-size: ptr(11px);
+                        color: $kb-text-dark;
+                        font-weight: 500;
+                        margin-bottom: ptr(2px);
+                    }
+                    
+                    input {
+                        padding: ptr(5px);
+                        border: 1px solid $border-color;
+                        border-radius: ptr(5px);
+                        font-size: ptr(12px);
+                        background-color: white;
+                        color: $kb-text-dark;
+                        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                        outline: none;
+                        
+                        &::placeholder {
+                            color: $kb-text-light;
+                            font-size: ptr(10px);
+                        }
+                        
+                        &:focus {
+                            border-color: $kb-yellow;
+                            box-shadow: 0 0 0 ptr(2px) rgba(255, 188, 0, 0.25);
+                            background-color: white;
+                            outline: none;
+                        }
+                        
+                        &.error {
+                            border-color: $danger;
+                            box-shadow: 0 0 0 0.1rem rgba($danger, 0.25);
+                            animation: shake 0.6s ease-in-out;
+                        }
+                    }
+                    
+                    @keyframes shake {
+                        0%, 100% { transform: translateX(0); }
+                        10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+                        20%, 40%, 60%, 80% { transform: translateX(2px); }
+                    }
+                    
+                    .error-message {
+                        color: $danger;
+                        font-size: ptr(10px);
+                        font-weight: 400;
+                        margin-left: ptr(4px);
+                        display: none;
+                        margin-top: ptr(4px);
+                        line-height: 1.2;
+                        
+                        i {
+                            color: $danger;
+                            font-size: ptr(10px);
+                            margin-right: ptr(4px);
+                        }
+                        
+                        &:not(:empty) {
+                            display: block;
+                        }
+                    }
+                    
+                    &.rrn_input input,
+                    &.phone_input input {
+                        letter-spacing: ptr(1px);
+                    }
+                }
+            }
+            
+            // 행원 주의사항 섹션
+            .banker_notes {
+                margin-top: ptr(12px);
+                padding: ptr(8px);
+                background: $kb-background-gray;
+                border-radius: ptr(6px);
+                
+                .notes_header {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(6px);
+                    margin-bottom: ptr(8px);
+                    
+                    i {
+                        color: $kb-dark;
+                        font-size: ptr(12px);
+                    }
+                    
+                    h4 {
+                        color: $kb-dark;
+                        font-size: ptr(11px);
+                        font-weight: 600;
+                        margin: 0;
+                    }
+                }
+                
+                .notes_content {
+                    .note_item {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: ptr(6px);
+                        margin-bottom: ptr(6px);
+                        
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                        
+                        .note_icon {
+                            color: $kb-dark;
+                            font-size: ptr(10px);
+                            margin-top: ptr(2px);
+                            flex-shrink: 0;
+                        }
+                        
+                        .note_text {
+                            font-size: ptr(10px);
+                            color: $kb-text-dark;
+                            line-height: 1.4;
+                            
+                            strong {
+                                color: $kb-dark;
+                                font-weight: 600;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .customer_check_actions {
+                display: flex;
+                justify-content: center;
+                margin-top: ptr(12px);
+                
+                .btn_check_customer {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(4px);
+                    padding: ptr(8px) ptr(16px);
+                    background-color: rgba($kb-yellow, 0.4);
+                    color: $kb-dark;
+                    border: none;
+                    border-radius: ptr(4px);
+                    font-size: ptr(11px);
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    width: 100%;
+                    justify-content: center;
+                    
+                    &:hover {
+                        background-color: $kb-yellow;
+                        transform: scale(1.01);
+                    }
+                    
+                    &:active {
+                        transform: scale(0.95);
+                    }
+                    &:disabled {
+                        background-color: $kb-background-gray;
+                        color: $kb-text-light;
+                        cursor: not-allowed;
+                    }
+                    
+                    i {
+                        font-size: ptr(12px);
+                    }
+                }
+            }
+        }
+    
+    // 두 번째 row - 대출 정보 입력
+    .second_row {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        
+        .loan_info_header {
+            color: $kb-dark;
+            font-size: ptr(11px);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: ptr(12px);
+            padding-top: ptr(20px);
+            
+            .header_icon {
+                font-size: ptr(12px);
+                color: $kb-dark;
+            }
+        }
+        
+        .loan_info_content {
+            padding: ptr(12px) 0 ;
+            
+            .input_grid {
+                display: flex;
+                flex-direction: column;
+                gap: ptr(6px);
+                
+                .input_group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: ptr(3px);
+                    
+                    label {
+                        font-size: ptr(11px);
+                        font-weight: 500;
+                        color: $kb-text-dark;
+                    }
+                    
+                    input, select {
+                        padding: ptr(8px);
+                        border: 1px solid $border-color;
+                        border-radius: ptr(5px);
+                        font-size: ptr(11px);
+                        background-color: white;
+                        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                        outline: none;
+                        
+                        &::placeholder {
+                            color: $kb-text-light;
+                        }
+                        
+                        &:focus {
+                            border-color: $kb-yellow;
+                            box-shadow: 0 0 0 ptr(2px) rgba(255, 188, 0, 0.25);
+                            background-color: white;
+                            outline: none;
+                        }
+                        
+                        &.error {
+                            border-color: $danger;
+                            box-shadow: 0 0 0 0.1rem rgba($danger, 0.25);
+                            animation: shake 0.6s ease-in-out;
+                        }
+                    }
+                    
+                    .error-message {
+                        color: $danger;
+                        font-size: ptr(10px);
+                        font-weight: 400;
+                        margin-left: ptr(4px);
+                        display: none;
+                        margin-top: ptr(4px);
+                        line-height: 1.2;
+                        
+                        i {
+                            color: $danger;
+                            font-size: ptr(10px);
+                            margin-right: ptr(4px);
+                        }
+                        
+                        &:not(:empty) {
+                            display: block;
+                        }
+                    }
+                    
+                    select {
+                        cursor: pointer;
+                        
+                        option {
+                            padding: ptr(4px);
+                            font-size: ptr(11px);
+                        }
+                    }
+                    
+                    &.required {
+                        label::after {
+                            content: " *";
+                            color: $danger;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // 세 번째 row - 액션 버튼
+    .third_row {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        
+        .assessment_actions {
+            display: flex;
+            gap: ptr(8px);
+            padding-top: ptr(20px);
+            
+            button {
+                display: flex;
+                align-items: center;
+                gap: ptr(6px);
+                padding: ptr(8px) ptr(12px);
+                border: none;
+                border-radius: ptr(4px);
+                font-size: ptr(11px);
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                
+                i {
+                    font-size: ptr(12px);
+                }
+            }
+            
+            .btn_assess {
+                background-color: rgba($kb-yellow, 0.4);
+                color: $kb-dark;
+
+                &:hover {
+                    background-color: $kb-yellow;
+                    transform: scale(1.01);
+                }
+                
+                &:active {
+                    transform: scale(0.95);
+                }
+                &:disabled {
+                    background-color: $kb-background-gray;
+                    color: $kb-text-light;
+                    cursor: not-allowed;
+                }
+            }
+            
+            .btn_reset {
+                background-color: $bg-light;
+                color: $kb-text-dark;
+                border: 1px solid $kb-border;
+                
+                &:hover {
+                    background-color: $kb-background-gray;
+                }
+            }
+        }
+    }
+}

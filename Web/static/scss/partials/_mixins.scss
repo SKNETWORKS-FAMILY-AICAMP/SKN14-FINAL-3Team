@@ -1,0 +1,119 @@
+// KB국민은행 직원 업무시스템 SCSS 믹스인
+
+// 반응형 믹스인
+@mixin mobile {
+  @media (max-width: 480px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}
+
+// 플렉스박스 믹스인
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@mixin flex-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+// 버튼 믹스인
+@mixin button-base {
+  border: none;
+  border-radius: $border-radius;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+}
+
+@mixin button-primary {
+  @include button-base;
+  background: $kb-yellow;
+  color: $kb-dark;
+  
+  &:hover {
+    background: $kb-yellow-hover;
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// 입력 필드 믹스인
+@mixin input-base {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid $kb-input-border;
+  border-radius: $border-radius;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $kb-yellow;
+    box-shadow: 0 0 0 ptr(3px) rgba(255, 215, 0, 0.1);
+  }
+}
+
+// 카드 믹스인
+@mixin card {
+  background: white;
+  border-radius: ptr(12px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  padding: ptr(32px);
+}
+
+// 텍스트 말줄임표
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 애니메이션 믹스인
+@mixin fade-in($duration: 0.3s) {
+  animation: fadeIn $duration ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

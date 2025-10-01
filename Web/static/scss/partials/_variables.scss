@@ -1,0 +1,90 @@
+// KB국민은행 직원 업무시스템 SCSS 변수
+
+// KB국민은행 공식 메인 컬러
+$kb-yellow: #ffbc00;           // Pantone 130 C, RGB(255, 188, 0)
+$kb-gray: #776c61;             // 로고 색이랑 똑같은 색으로 하다보니 바꾸게 됨 
+$kb-dark: #392e1b;             // Pantone 411C, RGB(84, 80, 69)
+$kb-dark-light-line:rgba(255, 255, 255, 0.1);
+$kb-background-gray:#f8f8f8;
+$kb-background-dark-gray:#796e64;
+
+$kb-light-gray: #f8f9fa;
+// $kb-border: #e9ecef;
+$kb-border: #e2e1e0;
+$kb-input-border: #e4e6ea;
+
+$kb-text-white: #eeeded;
+$kb-text-white-light: rgba(255, 255, 255, 0.7);
+$kb-text-white-light-2: rgba(255, 255, 255, 0.5);
+
+$kb-text-dark: #333;
+$kb-text-light: #666;
+
+// 배경 색상
+$bg-light: #fff;
+
+// 경고/위험 색상
+$danger: #dc3545;
+$shadows: rgba(220, 53, 70, 0.538);
+$positive: #28a745;
+$kb-red: #dc3545;  // PDF 관련 색상
+
+// 테두리 색상
+$border-color: #dee2e6;
+$border-radius-sm: 4px;
+
+// 레이아웃 높이 및 마진
+$header-height: 2.5rem; // 40px
+$header-margin-top: 0.625rem; // 10px
+$footer-height: 2.5rem; // 40px
+$footer-margin-bottom: 0.625rem; // 10px
+
+// 텍스트 색상
+$text-dark: #333;
+$text-light: $kb-gray;  // KB Gray로 변경
+$text-light-secondary: rgba(119, 108, 97, 0.8);  // KB Gray의 투명도 버전
+$text-secondary: #6c757d;
+
+// 폰트
+$font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+$default-font-size: 16px; // 기본 폰트 크기 (rem 계산 기준)
+
+// 크기
+$border-radius: 6px;
+
+// 간격
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+
+// 반응형 브레이크포인트
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Mixins
+@mixin mobile {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+

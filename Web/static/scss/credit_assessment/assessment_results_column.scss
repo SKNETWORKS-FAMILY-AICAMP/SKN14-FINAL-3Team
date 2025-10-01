@@ -1,0 +1,889 @@
+@import '../base';
+
+// 세 번째 컬럼 - 심사 결과 표시 영역
+.third_column {
+    grid-column: 3;
+    min-height: 0;
+    padding: ptr(20px);
+    display: flex;
+    flex-direction: column;
+    gap: ptr(10px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    
+    // 커스텀 스크롤바 스타일
+    &::-webkit-scrollbar {
+        width: ptr(6px);
+    }
+    
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background: rgba($kb-text-light, 0.3);
+        border-radius: ptr(3px);
+        transition: background 0.2s ease;
+        
+        &:hover {
+            background: rgba($kb-text-light, 0.5);
+        }
+    }
+    
+    &::-webkit-scrollbar-thumb:active {
+        background: rgba($kb-text-light, 0.7);
+    }
+    
+    // Usage Guide Container (챗봇과 동일한 스타일)
+    #usage_guide_container {
+        @include flex-center;
+        width: 100%;
+        min-height: 100%;
+        padding: ptr(20px) ptr(15px);
+        
+        .usage_guide {
+            min-width: ptr(500px);
+            text-align: center;
+            
+            .usage_guide_header {
+                margin-bottom: ptr(20px);
+                
+                .usage_guide_icon {
+                    @include flex-center;
+                    width: ptr(40px);
+                    height: ptr(40px);
+                    background: linear-gradient(135deg, $kb-yellow 0%, #ffd700 100%);
+                    border-radius: 50%;
+                    margin: 0 auto ptr(10px);
+                    box-shadow: 0 2px 8px rgba($kb-yellow, 0.3);
+                    
+                    i {
+                        font-size: ptr(18px);
+                        color: $kb-dark;
+                    }
+                }
+                
+                .usage_guide_title {
+                    font-size: ptr(16px);
+                    font-weight: 600;
+                    color: $kb-dark;
+                    margin: 0;
+                    padding-bottom: ptr(20px);
+                }
+            }
+            
+            .usage_guide_content {
+                margin-bottom: ptr(20px);
+                
+                .usage_guide_step {
+                    display: flex;
+                    align-items: flex-start;
+                    gap: ptr(10px);
+                    margin-bottom: ptr(16px);
+                    text-align: left;
+                    
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    
+                    .step_number {
+                        @include flex-center;
+                        width: ptr(15px);
+                        height: ptr(15px);
+                        background: lighten($kb-yellow, 30%);
+                        color: $kb-dark;
+                        border-radius: 50%;
+                        font-size: ptr(11px);
+                        font-weight: 600;
+                        flex-shrink: 0;
+                    }
+                    
+                    .step_content {
+                        flex: 1;
+                        
+                        h4 {
+                            font-size: ptr(12px);
+                            font-weight: 600;
+                            color: $kb-dark;
+                            margin: 0 0 ptr(4px) 0;
+                        }
+                        
+                        p {
+                            font-size: ptr(10px);
+                            color: $kb-text-dark;
+                            line-height: 1.4;
+                            margin: 0;
+                        }
+                    }
+                }
+            }
+            
+            .usage_guide_tips {
+                border-top: 1px solid rgba($kb-border, 0.5);
+                padding-top: ptr(25px);
+                
+                .tip_item {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(8px);
+                    margin-bottom: ptr(8px);
+                    font-size: ptr(9px);
+                    color: $kb-text-dark;
+                    justify-content: end;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                    
+                    i {
+                        color: $kb-yellow;
+                        font-size: ptr(10px);
+                    }
+                }
+            }
+        }
+    }
+
+    .assessment_results {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: ptr(10px);
+        padding: 0 ptr(40px);
+
+        .results_header {
+            display: flex;
+            gap: ptr(8px);
+            height: ptr(30px);
+            font-size: ptr(14px);
+            font-weight: 600;
+            margin-bottom: ptr(10px);
+            
+            .header_icon {
+                font-size: ptr(14px);
+                color: $kb-dark;
+            }
+
+        }
+
+        .section_title {
+            font-size: ptr(12px);
+            font-weight: 600;
+            color: $kb-text-dark;
+            margin-bottom: ptr(8px);
+            padding-bottom: ptr(4px);
+            border-bottom: 1px solid $kb-border;
+        }
+        
+        .results_content {
+            display: flex;
+            flex-direction: column;
+            gap: ptr(10px);
+        }
+            
+            .assessment_summary {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: ptr(12px);
+                margin-bottom: ptr(16px);
+                padding: ptr(20px) ptr(40px);
+                
+                .summary_card {
+                    background: white;
+                    border: 1px solid $kb-border;
+                    border-radius: ptr(8px);
+                    padding: ptr(12px);
+                    text-align: center;
+                    
+                    .summary_label {
+                        font-size: ptr(11px);
+                        color: $kb-text-light;
+                        margin-bottom: ptr(4px);
+                    }
+                    
+                    .summary_value {
+                        font-size: ptr(14px);
+                        font-weight: 600;
+                        color: $kb-text-dark;
+                        
+                        &.credit_score {
+                            color: #10b981;
+                        }
+                        
+                        &.credit_rating {
+                            color: #3b82f6;
+                        }
+                        
+                        &.approval_status {
+                            &.approved {
+                                color: #10b981;
+                            }
+                            
+                            &.rejected {
+                                color: #ef4444;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            .assessment_details {
+                display: flex;
+                flex-direction: column;
+                gap: ptr(10px);
+
+                .detail_section {
+                    margin-bottom: ptr(16px);
+                    display: flex;
+                    flex-direction: column;
+                    gap: ptr(10px);
+                    
+                    .section_title {
+                        font-size: ptr(12px);
+                        font-weight: 600;
+                        color: $kb-text-dark;
+                        margin-bottom: ptr(8px);
+                        padding-bottom: ptr(4px);
+                        border-bottom: 1px solid $kb-border;
+                    }
+                    
+                    .credit_score_grid {
+                        display: grid; 
+                        grid-template-columns: 1.2fr 2fr; // 왼쪽 컬럼을 살짝 넓혀서 차트를 오른쪽으로 이동
+                        padding: ptr(20px) ptr(40px);
+                        gap: ptr(20px);
+
+                        .credit_score_graph_container{
+                            display: block;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            gap: ptr(8px);  
+                            width: 100%;
+
+                            #credit_score_chart_container {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                padding-bottom: ptr(25px);
+                                
+                            }
+                        }
+                    }
+
+                    .credit_score_graph {
+                        display: grid;
+                        grid-template-rows: 1fr auto;
+                        gap:ptr(20px);
+                        position: relative;
+                        
+                        #credit_score_chart_container {
+                            width: ptr(140px);
+                            height: ptr(140px);
+                            position: relative;
+                            border-radius: 50%;
+                            box-shadow: 
+                                0 8px 25px rgba(16, 185, 129, 0.15),
+                                0 4px 12px rgba(16, 185, 129, 0.1),
+                                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+                            backdrop-filter: blur(10px);
+                            transition: all 0.3s ease;
+                          
+                            &:hover {
+                                transform: scale(1.05);
+                                box-shadow: 
+                                    0 12px 35px rgba(16, 185, 129, 0.2),
+                                    0 6px 18px rgba(16, 185, 129, 0.15),
+                                    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+                            }
+                        }
+                        
+                        @keyframes rotate {
+                            0% { transform: rotate(0deg); }
+                            100% { transform: rotate(360deg); }
+                        }
+                    }
+
+                    .donut {
+                        width: 120px;
+                        height: 120px;
+                    }
+
+                    .donut-bg {
+                        fill: none;
+                        stroke: $kb-background-gray;
+                        stroke-width: 2.5;
+                    }
+
+                    .donut-ring {
+                        fill: none;
+                        stroke: #10b981;
+                        stroke-width: 2.5;
+                        transform: rotate(-90deg);
+                        transform-origin: 50% 50%;
+                        transition: stroke-dasharray 0.4s ease;
+                    }
+
+                    .donut-label {
+                        font-size: 8px;
+                        font-weight: 700;
+                        fill: $kb-text-dark;
+                    }
+
+                    .credit_score_detail {
+                        font-size: ptr(12px);
+                        font-weight: 600;
+                        color: $kb-text-dark;
+                        @include flex-center;
+                    }
+
+                    .credit_score_discription_container {
+                        @include flex-center;
+                    }
+
+                    .credit_score_discription {
+                        color: $kb-text-dark;
+                        font-size: ptr(11px);
+                        line-height: 1.6;
+                        width: 80%;
+                        
+                        .description_main {
+                            font-size: ptr(12px);
+                            font-weight: 600;
+                            color: $kb-text-dark;
+                            margin-bottom: ptr(8px);
+                            
+                            strong {
+                                color: #10b981;
+                            }
+                        }
+                        
+                        .description_detail {
+                            font-size: ptr(11px);
+                            color: $kb-text-dark;
+                            margin-bottom: ptr(10px);
+                            line-height: 1.5;
+                        }
+                        
+                        .description_benefit {
+                            font-size: ptr(10px);
+                            color: #065e42;
+                            font-weight: 400;
+                            background: rgba(16, 185, 129, 0.1);
+                            padding: ptr(8px) ptr(12px);
+                            border-radius: ptr(6px);
+                            margin-bottom: ptr(8px);
+                            
+                            strong {
+                                color: #065e42;
+                            }
+                        }
+                        
+                        .description_note {
+                            font-size: ptr(9px);
+                            color: $kb-text-light;
+                            border-top: 1px solid rgba($kb-text-light, 0.2);
+                            padding-top: ptr(6px);
+                        }
+
+                        .score-distribution {
+                            margin-top: ptr(12px);
+                            padding-top: ptr(12px);
+                            border-top: 1px solid $kb-border-light;
+                            display: flex;
+                            flex-direction: column;
+                            gap: ptr(6px);
+
+                            .score-distribution-item {
+                                display: flex;
+                                align-items: center;
+                                gap: ptr(8px);
+
+                                .label {
+                                    font-size: ptr(10px);
+                                    color: $kb-text-light;
+                                    width: ptr(40px);
+                                    text-align: right;
+                                }
+
+                                .score-distribution-bar {
+                                    flex: 1;
+                                    height: ptr(8px);
+                                    background-color: $kb-background-gray;
+                                    border-radius: ptr(4px);
+                                    overflow: hidden;
+                                    position: relative;
+
+                                    .progress {
+                                        height: 100%;
+                                        border-radius: ptr(4px);
+                                        background-color: $kb-border;
+                                        transition: width 0.5s ease-out;
+                                        width: 0%;
+                                    }
+
+                                    &.active {
+                                        .progress {
+                                            &.low { background-color: #ef4444; }
+                                            &.medium { background-color: #f59e0b; }
+                                            &.normal { background-color: #84cc16; }
+                                            &.good { background-color: #22c55e; }
+                                            &.excellent { background-color: #10b981; }
+                                        }
+                                    }
+                                }
+
+                                .range {
+                                    font-size: ptr(10px);
+                                    color: $kb-text-light;
+                                    width: ptr(60px);
+                                }
+                            }
+                        }
+                    }
+
+                    // 위험도 분석 (레이더 차트) - 신용점수와 동일한 구조
+                    .risk_analysis_grid {
+                        display: grid;
+                        grid-template-columns: 1fr 2fr;
+                        gap: ptr(12px);
+                        padding: ptr(10px) ptr(40px);
+                        
+                        .risk_analysis_graph_container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+
+                    .risk_analysis_graph {
+                        display: grid;
+                        grid-template-rows: 1fr auto;
+                        gap: ptr(20px);
+                        position: relative;
+                        
+                        #risk_analysis_chart_container {
+                            width: 100%;
+                            height: ptr(200px); // 차트가 그려질 높이를 명시적으로 지정
+                            overflow: visible;
+                        }
+
+                        #corporate_risk_analysis_chart_container {
+                            width: ptr(340px);
+                            height: ptr(320px);
+                            overflow: visible;
+                        }
+                    }
+
+                    .risk_analysis_detail {
+                        font-size: ptr(12px);
+                        font-weight: 600;
+                        color: $kb-text-dark;
+                        @include flex-center;
+                    }
+
+                    .risk_analysis_discription_container {
+                        @include flex-center;
+                    }
+
+                    .risk_analysis_discription {
+                        color: $kb-text-dark;
+                        font-size: ptr(11px);
+                        line-height: 1.6;
+                        width: 80%;
+                        
+                        .description_main {
+                            font-size: ptr(12px);
+                            font-weight: 600;
+                            color: $kb-text-dark;
+                            margin-bottom: ptr(8px);
+                            
+                            strong {
+                                color: #10b981;
+                            }
+                        }
+                        
+                        .description_detail {
+                            font-size: ptr(11px);
+                            color: $kb-text-dark;
+                            margin-bottom: ptr(10px);
+                            line-height: 1.5;
+                        }
+                        
+                        .description_benefit {
+                            font-size: ptr(10px);
+                            color: #065e42;
+                            font-weight: 400;
+                            background: rgba(16, 185, 129, 0.1);
+                            padding: ptr(8px) ptr(12px);
+                            border-radius: ptr(6px);
+                            margin-bottom: ptr(8px);
+                            
+                            strong {
+                                color: #065e42;
+                            }
+                        }
+                        
+                        .description_note {
+                            font-size: ptr(9px);
+                            color: $kb-text-light;
+                            border-top: 1px solid rgba($kb-text-light, 0.2);
+                            padding-top: ptr(6px);
+                        }
+                    }
+                    
+                    .detail_grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr;
+                        gap: ptr(8px);
+                        padding: ptr(20px) ptr(40px);
+                        
+                        .detail_item {
+                            display: flex;
+                            flex-direction: column;
+                            gap: ptr(4px);
+                            padding: ptr(8px);
+                            background: $kb-background-gray;
+                            border-radius: ptr(4px);
+                            font-size: ptr(11px);
+                            
+                            .detail_header {
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                            }
+                            
+                            .detail_label {
+                                color: $kb-text-light;
+                            }
+                            
+                            .detail_value {
+                                color: $kb-text-dark;
+                                font-weight: 600;
+                            }
+                            
+                            .progress_bar {
+                                width: 100%;
+                                height: ptr(4px);
+                                background: rgba($kb-text-light, 0.2);
+                                border-radius: ptr(2px);
+                                overflow: hidden;
+                                position: relative;
+                                
+                                .progress_fill {
+                                    height: 100%;
+                                    background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+                                    border-radius: ptr(2px);
+                                    transition: width 0.3s ease;
+                                    position: relative;
+                                    
+                                    &::after {
+                                        content: '';
+                                        position: absolute;
+                                        top: 0;
+                                        left: 0;
+                                        right: 0;
+                                        bottom: 0;
+                                        background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+                                        animation: shimmer 2s infinite;
+                                    }
+                                }
+                                
+                                &.low_risk .progress_fill {
+                                    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+                                }
+                                
+                                &.medium_risk .progress_fill {
+                                    background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+                                }
+                                
+                                &.high_risk .progress_fill {
+                                    background: linear-gradient(90deg, #ef4444 0%, #f87171 100%);
+                                }
+                            }
+                        }
+                        
+                        @keyframes shimmer {
+                            0% { transform: translateX(-100%); }
+                            100% { transform: translateX(100%); }
+                        }
+                    }
+                    
+                }
+            }
+            
+                    .ai_analysis_content {
+                        padding : ptr(20px) ptr(40px);
+
+                        .analysis_summary {
+                            display: flex;
+                            align-items: center;
+                            gap: ptr(20px);
+                            padding: ptr(16px);
+                            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+                            border-radius: ptr(8px);
+                            margin-bottom: ptr(20px);
+                            
+                            .summary_icon {
+                                flex-shrink: 0;
+                                width: ptr(40px);
+                                height: ptr(40px);
+                                background: #10b981;
+                                border-radius: 50%;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                
+                                i {
+                                    font-size: ptr(20px);
+                                    color: white;
+                                    @include flex-center;
+                                }
+                            }
+                            
+                            .summary_text {
+                                flex: 1;
+                                
+                                .summary_title {
+                                    font-size: ptr(14px);
+                                    font-weight: 700;
+                                    color: #065e42;
+                                    margin-bottom: ptr(4px);
+                                }
+                                
+                                .summary_description {
+                                    font-size: ptr(11px);
+                                    color: #374151;
+                                    line-height: 1.4;
+                                }
+                            }
+                        }
+                        
+                        .analysis_details {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: ptr(12px);
+                            margin-bottom: ptr(20px);
+                            
+                            .detail_item {
+                padding: ptr(12px);
+                                background: #f8fafc;
+                                border-radius: ptr(6px);
+                                border: 1px solid #e2e8f0;
+                                
+                                .detail_header {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    margin-bottom: ptr(6px);
+                                    
+                                    .detail_label {
+                                        font-size: ptr(10px);
+                    font-weight: 600;
+                                        color:#065e42;
+                                    }
+                                    
+                                    .detail_value {
+                                        font-size: ptr(12px);
+                                        font-weight: 700;
+                                        color: #065e42;
+                                    }
+                                }
+                                
+                                .detail_description {
+                                    font-size: ptr(9px);
+                                    color: #64748b;
+                                    line-height: 1.3;
+                                }
+                            }
+                        }
+                        
+                        .analysis_recommendations {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            gap: ptr(16px);
+                            
+                            .recommendation_section {
+                                .section_header {
+                    display: flex;
+                    align-items: center;
+                    gap: ptr(6px);
+                                    margin-bottom: ptr(8px);
+                                    font-size: ptr(11px);
+                                    font-weight: 600;
+                                    
+                                    i {
+                                        font-size: ptr(12px);
+                                    }
+                                    
+                                    &:first-child {
+                                        color: #065e42;
+                                    }
+                                    
+                                    &:last-child {
+                                        color: #d97706;
+                                    }
+                                }
+                                
+                                .recommendation_list {
+                                    .recommendation_item {
+                                        display: flex;
+                                        align-items: flex-start;
+                                        gap: ptr(8px);
+                                        padding: ptr(6px) 0;
+                                        font-size: ptr(10px);
+                                        line-height: 1.4;
+                                        
+                                        i {
+                                            flex-shrink: 0;
+                                            margin-top: ptr(2px);
+                                            font-size: ptr(10px);
+                                            color:#065e42;
+                                        }
+                                        
+                                        &.warning {
+                                            i {
+                                                color: #d97706;
+                                            }
+                                        }
+                                        
+                                        span {
+                                            color: #374151;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+    }
+}
+
+
+// 로딩 화면 스타일 - 깔끔하고 컴팩트
+.assessment_loading {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    width: 100%;
+    
+}
+
+.loading_container {
+    text-align: center;
+    max-width: 300px;
+}
+
+.loading_icon {
+    margin-bottom: 1rem;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #e5e7eb;
+    border-top: 2px solid #6b7280;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading_content {
+    .loading_title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #374151;
+        margin-bottom: 0.5rem;
+    }
+    
+    .loading_description {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+    }
+}
+
+.loading_steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.loading_step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #9ca3af;
+    
+    i {
+        font-size: 0.875rem;
+    }
+    
+    &.active {
+        color: #6b7280;
+    }
+    
+    &.current {
+        color: #374151;
+        font-weight: 500;
+    }
+}
+
+// Plotly 차트 스타일 개선
+.polarsublayer, .draglayer {
+    font-size: ptr(10px) !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    
+    text {
+        font-size: ptr(10px) !important;
+        fill: rgba(0, 0, 0, 0.6) !important;
+    }
+    
+    .legend {
+        font-size: ptr(9px) !important;
+        color: rgba(0, 0, 0, 0.5) !important;
+    }
+    
+    .xtick, .ytick {
+        font-size: ptr(8px) !important;
+        color: rgba(0, 0, 0, 0.5) !important;
+    }
+}
+
+// angularaxistick 스타일 개선
+.angularaxistick {
+    font-size: ptr(10px) !important;
+    color: rgba(0, 0, 0, 0.7) !important;
+    
+    text {
+        font-size: ptr(10px) !important;
+        fill: rgba(0, 0, 0, 0.7) !important;
+    }
+}
+
+// xtick, ytick 스타일 개선
+.xtick, .ytick {
+    font-size: ptr(9px) !important;
+    color: rgba(0, 0, 0, 0.6) !important;
+    
+    text {
+        font-size: ptr(9px) !important;
+        fill: rgba(0, 0, 0, 0.6) !important;
+    }
+}

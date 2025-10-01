@@ -1,0 +1,63 @@
+<!-- Chat PDF Column Component -->
+<div class="chat_pdf_column">
+    <!-- PDF Column Header -->
+    <div class="pdf_column_header">
+        <div class="pdf_upload_section">
+            <div class="pdf_icon">
+                <i class="bi bi-file-earmark-pdf-fill"></i>
+            </div>
+            <div class="pdf_upload_title">PDF 업로드</div>
+            <div class="pdf_upload_shortcut">Ctrl + Shift + U</div>
+        </div>
+        
+        <div class="pdf_search_section">
+            <div class="search_icon">
+                <i class="bi bi-search"></i>
+            </div>
+            <div class="pdf_search_title">PDF 검색</div>
+            <div class="pdf_search_shortcut">Ctrl + F</div>
+        </div>
+    </div>
+
+    <!-- Current PDFs Section -->
+    <div class="current_pdfs_section">
+        <div class="current_pdfs_header">
+            <div class="current_pdfs_title">참조 중인 문서</div>
+            <div class="pdf_count">0개</div>
+        </div>
+        
+        <!-- 업로드 진행 상태 표시 -->
+        <div class="upload_progress_container" style="display: none;">
+            <div class="upload_progress_bar">
+                <div class="upload_progress_fill"></div>
+            </div>
+            <div class="upload_progress_text">업로드 중...</div>
+        </div>
+        
+        <div class="current_pdfs_list">
+            <!-- 동적으로 생성되는 current_pdf_item들이 여기에 추가됩니다 -->
+        </div>
+    </div>
+
+    <!-- PDF Reference List -->
+    <div class="pdf_reference_list_title">참조된 페이지</div>
+    <div class="pdf_reference_list">
+        <!-- 동적으로 생성되는 reference_item들이 여기에 추가됩니다 -->
+    </div>
+
+    <!-- PDF Column Footer -->
+    <div class="pdf_column_footer">
+        <div class="pdf_viewer_section">
+            <div class="viewer_icon">
+                <i class="bi bi-file-earmark-text"></i>
+            </div>
+            <div class="pdf_viewer_title">PDF 파일 저장</div>
+        </div>
+        <div class="pdf_management_section">
+            <div class="management_icon">
+                <i class="bi bi-folder2-open"></i>
+            </div>
+            <div class="pdf_management_title">문서 관리</div>
+        </div>
+    </div>
+</div>

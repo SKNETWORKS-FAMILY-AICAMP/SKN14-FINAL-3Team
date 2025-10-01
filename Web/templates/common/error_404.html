@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}페이지를 찾을 수 없음 - KB국민은행 직원 업무시스템{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/error_pages.css' %}">
+<style>
+/* 에러 페이지 전용 스타일 */
+.error_container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8f9fa;
+    padding: 2rem;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.error_content {
+    text-align: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #e9ecef;
+}
+
+.error_icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    color: #3b82f6;
+}
+
+.error_title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #3b82f6;
+    margin-bottom: 0.5rem;
+}
+
+.error_subtitle {
+    font-size: 1.5rem;
+    color: #374151;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.error_message {
+    font-size: 1rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.error_actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary {
+    background: #6b7280;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+}
+
+@media (max-width: 768px) {
+    .error_container {
+        padding: 1rem;
+    }
+    
+    .error_content {
+        padding: 2rem 1.5rem;
+    }
+    
+    .error_icon {
+        font-size: 3rem;
+    }
+    
+    .error_title {
+        font-size: 2.5rem;
+    }
+    
+    .error_subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .error_actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 250px;
+        justify-content: center;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error_container error_404">
+    <div class="error_content">
+        <div class="error_icon">
+            <i class="bi bi-search"></i>
+        </div>
+        <h1 class="error_title">404</h1>
+        <h2 class="error_subtitle">페이지를 찾을 수 없습니다</h2>
+        <p class="error_message">
+            요청하신 페이지가 존재하지 않거나 이동되었습니다.<br>
+            URL을 확인하시거나 다른 페이지로 이동해주세요.
+        </p>
+        <div class="error_actions">
+            <a href="{% url 'dashboard' %}" class="btn btn-primary">
+                <i class="bi bi-house-fill"></i>
+                대시보드로 이동
+            </a>
+            <button onclick="history.back()" class="btn btn-secondary">
+                <i class="bi bi-arrow-left-circle-fill"></i>
+                이전 페이지
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,66 @@
+<!-- Exchange Rate Widget -->
+<div class="exchange-rate-widget">
+    <div class="exchange-rate-header">
+        <div class="header-left">
+            <span class="header-icon">
+            </span>
+            <span class="header-title">실시간 환율</span>
+        </div>
+        <div class="header-right">
+            <span class="last-update" id="exchange-last-update">마지막 업데이트: 로딩중...</span>
+            <button class="refresh-btn" id="refresh-btn" onclick="refreshExchangeRates()">
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
+        </div>
+    </div>
+    
+    <div class="exchange-rate-grid">
+        <!-- USD/KRW -->
+        <div class="currency-card">
+            <div class="currency-label">USD/KRW</div>
+            <div class="currency-main-row">
+                <div class="currency-rate" id="usd-rate">로딩중...</div>
+                <div class="currency-change">
+                    <span class="change-value" id="usd-change">+0.00</span>
+                    <span class="change-percent" id="usd-percent">↑ 0.00%</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EUR/KRW -->
+        <div class="currency-card">
+            <div class="currency-label">EUR/KRW</div>
+            <div class="currency-main-row">
+                <div class="currency-rate" id="eur-rate">로딩중...</div>
+                <div class="currency-change">
+                    <span class="change-value" id="eur-change">+0.00</span>
+                    <span class="change-percent" id="eur-percent">↑ 0.00%</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JPY/KRW -->
+        <div class="currency-card">
+            <div class="currency-label">JPY/KRW</div>
+            <div class="currency-main-row">
+                <div class="currency-rate" id="jpy-rate">로딩중...</div>
+                <div class="currency-change">
+                    <span class="change-value" id="jpy-change">+0.00</span>
+                    <span class="change-percent" id="jpy-percent">↑ 0.00%</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CNY/KRW -->
+        <div class="currency-card">
+            <div class="currency-label">CNY/KRW</div>
+            <div class="currency-main-row">
+                <div class="currency-rate" id="cny-rate">로딩중...</div>
+                <div class="currency-change">
+                    <span class="change-value" id="cny-change">+0.00</span>
+                    <span class="change-percent" id="cny-percent">↑ 0.00%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

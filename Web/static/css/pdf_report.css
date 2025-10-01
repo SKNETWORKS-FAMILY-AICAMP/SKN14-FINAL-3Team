@@ -1,0 +1,692 @@
+@charset "UTF-8";
+/* PDF 보고서 전용 스타일 */
+/* 기본 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+  margin: 0;
+  padding: 20px;
+  background: white;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* PDF 헤더 */
+.pdf-header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #1e3a8a;
+}
+
+.pdf-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+.pdf-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+/* 메인 컨텐츠 */
+.pdf-content {
+  width: 100%;
+}
+
+/* 기존 third_column 스타일을 PDF에 맞게 조정 */
+.third_column {
+  min-height: 0;
+  padding: 1.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.625rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.third_column .assessment_results {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+  gap: 0.625rem;
+  padding: 0 2.5rem;
+}
+
+.third_column .assessment_results .results_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+  height: 1.875rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.625rem;
+}
+
+.third_column .assessment_results .section_title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e2e1e0;
+}
+
+/* 평가 요약 */
+.third_column .assessment_results .assessment_summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 1.25rem 2.5rem;
+}
+
+.third_column .assessment_results .assessment_summary .summary_card {
+  background: white;
+  border: 1px solid #e2e1e0;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+.third_column .assessment_results .assessment_summary .summary_card .summary_label {
+  font-size: 0.6875rem;
+  color: #666;
+  margin-bottom: 0.25rem;
+}
+
+.third_column .assessment_results .assessment_summary .summary_card .summary_value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.third_column .assessment_results .assessment_summary .summary_card .summary_value.credit_score {
+  color: #10b981;
+}
+
+.third_column .assessment_results .assessment_summary .summary_card .summary_value.credit_rating {
+  color: #3b82f6;
+}
+
+.third_column .assessment_results .assessment_summary .summary_card .summary_value.approval_status.approved {
+  color: #10b981;
+}
+
+.third_column .assessment_results .assessment_summary .summary_card .summary_value.approval_status.rejected {
+  color: #ef4444;
+}
+
+/* 평가 상세 */
+.third_column .assessment_results .assessment_details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.625rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section {
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.625rem;
+}
+
+/* 신용점수 섹션 */
+.third_column .assessment_results .assessment_details .detail_section .credit_score_grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 1.25rem 2.5rem;
+  gap: 1.25rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_grid .credit_score_graph_container {
+  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  width: 17.5rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_graph_container #credit_score_chart_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-bottom: 1.5625rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_graph {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_graph #credit_score_chart_container {
+  width: 8.75rem;
+  height: 8.75rem;
+  position: relative;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15), 0 4px 12px rgba(16, 185, 129, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+          box-shadow: 0 8px 25px rgba(16, 185, 129, 0.15), 0 4px 12px rgba(16, 185, 129, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .donut {
+  width: 120px;
+  height: 120px;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .donut-bg {
+  fill: none;
+  stroke: #f8f8f8;
+  stroke-width: 2.5;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .donut-ring {
+  fill: none;
+  stroke: #10b981;
+  stroke-width: 2.5;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transition: stroke-dasharray 0.4s ease;
+  transition: stroke-dasharray 0.4s ease;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .donut-label {
+  font-size: 8px;
+  font-weight: 700;
+  fill: #333;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_detail {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_discription_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_discription {
+  color: #333;
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  width: 80%;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_discription .description_main {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_discription .description_main strong {
+  color: #10b981;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .credit_score_discription .description_sub {
+  font-size: 0.625rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* 위험도 분석 */
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 0.75rem;
+  padding: 0.625rem 2.5rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_grid .risk_analysis_graph_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_graph {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_graph #risk_analysis_chart_container {
+  width: 100%;
+  height: 12.5rem;
+  overflow: visible;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_detail {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription {
+  color: #333;
+  font-size: 0.6875rem;
+  line-height: 1.6;
+  width: 80%;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription .description_main {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription .description_main strong {
+  color: #10b981;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription .description_detail {
+  font-size: 0.6875rem;
+  color: #333;
+  margin-bottom: 0.625rem;
+  line-height: 1.5;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription .description_benefit {
+  font-size: 0.625rem;
+  color: #065e42;
+  font-weight: 400;
+  background: rgba(16, 185, 129, 0.1);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription .description_benefit strong {
+  color: #065e42;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .risk_analysis_discription .description_note {
+  font-size: 0.5625rem;
+  color: #666;
+  border-top: 1px solid rgba(102, 102, 102, 0.2);
+  padding-top: 0.375rem;
+}
+
+/* 재무 안정성 지표 */
+.third_column .assessment_results .assessment_details .detail_section .detail_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  padding: 1.25rem 2.5rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .detail_grid .detail_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background: #f8f8f8;
+  border-radius: 0.25rem;
+  font-size: 0.6875rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .detail_grid .detail_item .detail_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .detail_grid .detail_item .detail_label {
+  color: #666;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .detail_grid .detail_item .detail_value {
+  color: #333;
+  font-weight: 600;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .detail_grid .detail_item .progress_bar {
+  width: 100%;
+  height: 0.25rem;
+  background: rgba(102, 102, 102, 0.2);
+  border-radius: 0.125rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .detail_grid .detail_item .progress_bar .progress_fill {
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#10b981), to(#3b82f6));
+  background: linear-gradient(90deg, #10b981 0%, #3b82f6 100%);
+  border-radius: 0.125rem;
+  -webkit-transition: width 0.3s ease;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .detail_grid .detail_item .progress_bar .progress_fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(50%, rgba(255, 255, 255, 0.3)), to(transparent));
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+  border-radius: 0.125rem;
+}
+
+/* AI 분석 보고서 */
+.third_column .assessment_results .assessment_details .detail_section .ai_analysis_content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.625rem;
+  padding: 0 2.5rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .analysis_summary {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e2e1e0;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .summary_icon {
+  font-size: 1.25rem;
+  color: #10b981;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .summary_text {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .summary_title {
+  font-size: 0.875rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .summary_description {
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .analysis_details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .analysis_item {
+  background: white;
+  border: 1px solid #e2e1e0;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .analysis_item_title {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .analysis_item_content {
+  font-size: 0.625rem;
+  color: #666;
+  line-height: 1.3;
+}
+
+/* 추천 사항 및 주의사항 */
+.third_column .assessment_results .assessment_details .detail_section .analysis_recommendations {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_section {
+  background: white;
+  border: 1px solid #e2e1e0;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .section_header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #e2e1e0;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .section_header i {
+  font-size: 0.875rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .section_header i.bi-star-fill {
+  color: #10b981;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .section_header i.bi-exclamation-triangle-fill {
+  color: #f59e0b;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.375rem;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.375rem 0;
+  font-size: 0.625rem;
+  color: #333;
+  line-height: 1.3;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_item i {
+  font-size: 0.75rem;
+  margin-top: 0.125rem;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_item i.bi-check-circle {
+  color: #10b981;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_item.warning i.bi-exclamation-circle {
+  color: #f59e0b;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_item span {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+/* 주의사항 섹션 특별 스타일 */
+.third_column .assessment_results .assessment_details .detail_section .recommendation_section:has(.section_header i.bi-exclamation-triangle-fill) {
+  background: #fef3c7;
+  border-color: #fde68a;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_section:has(.section_header i.bi-exclamation-triangle-fill) .section_header {
+  color: #92400e;
+}
+
+.third_column .assessment_results .assessment_details .detail_section .recommendation_section:has(.section_header i.bi-exclamation-triangle-fill) .section_header i {
+  color: #f59e0b;
+}
+
+/* Plotly 차트 모드바 숨기기 */
+.modebar {
+  display: none !important;
+}
+
+/* PDF 푸터 */
+.pdf-footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+
+/* 인쇄 스타일 */
+@media print {
+  body {
+    margin: 0;
+    padding: 15px;
+  }
+}/*# sourceMappingURL=pdf_report.css.map */

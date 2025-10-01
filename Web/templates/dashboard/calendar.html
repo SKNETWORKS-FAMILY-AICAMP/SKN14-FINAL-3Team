@@ -1,0 +1,26 @@
+<!-- JavaScript Calendar Container -->
+<div class="django-calendar">
+    <div class="calendar-header">
+        <button class="calendar-btn prev-btn" onclick="changeMonth(-1)">
+            <i class="bi bi-chevron-left"></i>
+        </button>
+        <h4 class="calendar-month">로딩 중...</h4>
+        <button class="calendar-btn next-btn" onclick="changeMonth(1)">
+            <i class="bi bi-chevron-right"></i>
+        </button>
+    </div>
+    
+    <div class="calendar-weekdays">
+        <div class="weekday">월</div>
+        <div class="weekday">화</div>
+        <div class="weekday">수</div>
+        <div class="weekday">목</div>
+        <div class="weekday">금</div>
+        <div class="weekday">토</div>
+        <div class="weekday">일</div>
+    </div>
+    
+    <div class="calendar-days" id="calendar-days">
+        <!-- JavaScript가 동적으로 생성 -->
+    </div>
+</div>

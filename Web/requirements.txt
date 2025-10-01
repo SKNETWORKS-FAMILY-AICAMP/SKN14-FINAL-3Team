@@ -1,0 +1,24 @@
+
+# requirements.txt (웹앱 전용)
+Django==5.2.5 
+gunicorn==23.0.0 
+asgiref==3.9.1 
+sqlparse==0.5.3 
+mysqlclient==2.2.7 
+pymysql==1.1.1 
+pandas==2.3.2 
+numpy==2.3.2
+scikit-learn==1.7.0
+lightgbm
+boto3==1.34.142 
+python-dotenv==1.1.1 
+requests==2.32.5 
+django-extensions==4.1
+django-ebhealthcheck
+uvicorn
+whitenoise
+
+# 데이터 시각화
+plotly==5.17.0
+dash==2.14.2
+dash-bootstrap-components==1.5.0

@@ -1,0 +1,204 @@
+@import '../base';
+
+// 업무 분포표 위젯 스타일
+.work-distribution-widget {
+    border-radius: ptr(8px);
+    padding: ptr(8px);
+    background-color: $bg-light;
+    height: 100%;
+    border: 1px solid $kb-border;
+    
+    .widget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: ptr(8px);
+        
+        .header-left {
+            padding-left: ptr(5px);
+            display: flex;
+            align-items: center;
+            gap: ptr(5px);
+            
+            .header-icon {
+                height: ptr(14px);
+                border: ptr(2px) solid $kb-dark;
+            }
+            
+            .header-title {
+                font-size: ptr(12px);
+                font-weight: 600;
+                color: $kb-dark;
+            }
+        }
+        
+        .header-right {
+            .chart-type-selector {
+                display: flex;
+                gap: ptr(3px);
+                
+                .chart-btn {
+                    @include flex-center;
+                    width: ptr(16px);
+                    height: ptr(16px);
+                    border: 1px solid $kb-border;
+                    border-radius: ptr(3px);
+                    background: $bg-light;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    
+                    &:hover {
+                        background-color: $kb-yellow;
+                        border-color: $kb-yellow;
+                    }
+                    
+                    &.active {
+                        background-color: $kb-yellow;
+                        border-color: $kb-yellow;
+                    }
+                    
+                    i {
+                        font-size: ptr(8px);
+                        color: $kb-dark;
+                    }
+                }
+            }
+        }
+    }
+    
+    .distribution-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: ptr(8px);
+
+        // 왼쪽: 차트
+        .chart-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: ptr(80px);
+            
+            .doughnut-chart {
+                position: relative;
+                width: ptr(80px);
+                height: ptr(80px);
+                
+                .chart-circle {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background: conic-gradient(
+                        #f5edbe  0deg 100deg,
+                        #b7eabf  100deg 200deg,
+                        #99d9c0  200deg 240deg,
+                        #7cbac4 240deg 300deg,
+                        rgb(171, 164, 214) 300deg 350deg,
+                        rgb(210, 165, 210) 350deg 360deg
+                    );
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        width: 60%;
+                        height: 60%;
+                        background-color: $kb-background-gray;
+                        border-radius: 50%;
+                    }
+                }
+                
+                .chart-center {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    text-align: center;
+                    z-index: 1;
+                    
+                    .center-value {
+                        font-size: ptr(12px);
+                        font-weight: 700;
+                        color: $kb-dark;
+                        line-height: 1;
+                    }
+                    
+                    .center-label {
+                        font-size: ptr(7px);
+                        color: $kb-text-dark;
+                        margin-top: ptr(1px);
+                    }
+                }
+            }
+        }
+        
+        // 오른쪽: 상담 데이터 그리드 (2x3)
+        .consultation-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: ptr(4px);
+            
+            .consultation-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: ptr(4px);
+                background-color: $bg-light;
+                border-radius: ptr(4px);
+                border: 1px solid $kb-border;
+                transition: all 0.2s ease;
+                
+                &:hover {
+                    background-color: $kb-background-gray;
+                    transform: translateY(-1px);
+                }
+                
+                .consultation-label {
+                    font-size: ptr(7px);
+                    color: $kb-text-dark;
+                    text-align: center;
+                    line-height: 1.1;
+                    margin-bottom: ptr(2px);
+                }
+                
+                .consultation-value {
+                    font-size: ptr(12px);
+                    font-weight: 700;
+                    color: $kb-dark;
+                    text-align: center;
+                }
+            }
+        }
+
+    }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .work-distribution-widget {
+        .distribution-content {
+            flex-direction: column;
+            gap: ptr(6px);
+            
+            .consultation-grid {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1fr 1fr 1fr;
+                gap: ptr(3px);
+            }
+            
+            .chart-container {
+                .doughnut-chart {
+                    width: ptr(60px);
+                    height: ptr(60px);
+                }
+            }
+        }
+    }
+}

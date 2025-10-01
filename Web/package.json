@@ -1,0 +1,18 @@
+{
+  "name": "kb-finaissist",
+  "version": "1.0.0",
+  "description": "KB국민은행 직원 업무시스템",
+  "scripts": {
+    "build-css": "sass static/scss:static/css --watch --style=compressed --no-source-map --update",
+    "build-css-dev": "sass static/scss:static/css --watch --style=expanded --no-source-map --update",
+    "build-css-once": "sass static/scss:static/css --style=compressed --no-source-map --update",
+    "sass-watch": "sass --watch static/scss:static/css --style=expanded --source-map",
+    "watch-login": "sass --watch static/scss/login.scss:static/css/login.css --style=expanded"
+  },
+  "devDependencies": {
+    "sass": "^1.69.0"
+  },
+  "keywords": ["django", "scss", "kb", "banking"],
+  "author": "KB FinAIssist Team",
+  "license": "MIT"
+}

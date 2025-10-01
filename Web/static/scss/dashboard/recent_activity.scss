@@ -1,0 +1,232 @@
+@import '../base';
+
+// 최근 활동 위젯 스타일
+.recent-activity-widget {
+    border-radius: ptr(8px);
+    padding: ptr(10px);
+    background-color: $bg-light;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: ptr(1px) solid $kb-border;
+    box-shadow: 0 ptr(2px) 4px rgba(0, 0, 0, 0.05);
+    .widget-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: ptr(8px);
+        
+        .header-left {
+            padding-left: ptr(5px);
+            display: flex;
+            align-items: center;
+            gap: ptr(5px);
+            
+            .header-icon {
+                height: ptr(14px);
+                border: ptr(2px) solid $kb-dark;
+            }
+            
+            .header-title {
+                font-size: ptr(12px);
+                font-weight: 600;
+                color: $kb-dark;
+            }
+        }   
+        
+        .header-right {
+            .view-all-btn {
+                font-size: ptr(10px);
+                color: $kb-text-dark;
+                background: none;
+                border: none;
+                cursor: pointer;
+                text-decoration: underline;
+                
+                &:hover {
+                    color: $positive;
+                }
+            }
+        }
+    }
+    
+    .activity-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        gap: ptr(5px);
+        padding-right: ptr(4px);
+        
+        &::-webkit-scrollbar {
+            width: ptr(4px);
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: ptr(2px);
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: ptr(2px);
+        }
+        
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            padding: ptr(5px);
+            background-color: $bg-light;
+            border-radius: ptr(8px);
+            transition: all 0.2s ease;
+            width: 100%;
+            
+            &:hover {
+                background-color: $kb-background-gray;
+            }
+            
+            .activity-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .activity-inside {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: ptr(5px);
+                width: 100%;
+
+                .activity-status {
+                    @include flex-center;
+                    width: ptr(8px);
+                    height: ptr(8px);
+                    border-radius: 50%;
+                    flex-shrink: 0;
+                    
+                    &.completed {
+                        background-color: $positive;
+                    }
+                    
+                    &.pending {
+                        background-color: $kb-yellow;
+                    }
+                    
+                    &.failed {
+                        background-color: $danger;
+                    }
+                }
+
+                .activity-title {
+                    display: flex;
+                    align-items: center;
+                    font-size: ptr(10px);
+                    font-weight: 500;
+                    color: $kb-dark;
+                    line-height: 1.3;
+                    flex: 1;
+                }
+                
+                .activity-time {
+                    @include flex-center;
+                    font-size: ptr(8px);
+                    color: $kb-text-dark;
+                    margin-top: ptr(2px);
+                    flex-shrink: 0;
+                }
+            }
+            .activity-description {
+                font-size: ptr(10px);
+                color: $kb-text-dark;
+                line-height: 1.4;
+                width: 100%;
+                margin-top: ptr(2px);
+            }
+        }
+        
+        .empty-state {
+            @include flex-center;
+            flex-direction: column;
+            gap: ptr(10px);
+            padding: ptr(20px);
+            text-align: center;
+            color: $kb-text-dark;
+            
+            .empty-icon {
+                @include flex-center;
+                width: ptr(40px);
+                height: ptr(40px);
+                background-color: $kb-border;
+                border-radius: 50%;
+                color: $kb-text-dark;
+                
+                i {
+                    font-size: ptr(20px);
+                }
+            }
+            
+            .empty-text {
+                font-size: ptr(12px);
+            }
+        }
+    }
+    
+    .activity-summary {
+        margin-top: ptr(10px);
+        padding-top: ptr(10px);
+        border-top: 1px solid $kb-border;
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: ptr(8px);
+            
+            .summary-item {
+                text-align: center;
+                background-color: $bg-light;
+                border-radius: ptr(4px);
+                
+                .summary-value {
+                    font-size: ptr(12px);
+                    font-weight: 600;
+                    color: $kb-dark;
+                    line-height: 1;
+                }
+                
+                .summary-label {
+                    font-size: ptr(8px);
+                    color: $kb-text-dark;
+                    margin-top: ptr(2px);
+                }
+            }
+        }
+    }
+}
+
+// 반응형 디자인
+@media (max-width: 768px) {
+    .recent-activity-widget {
+        .activity-content {
+            .activity-item {
+                padding: ptr(6px);
+                
+                .activity-icon {
+                    width: ptr(20px);
+                    height: ptr(20px);
+                }
+            }
+        }
+        
+        .activity-summary {
+            .summary-stats {
+                grid-template-columns: 1fr;
+                gap: ptr(6px);
+            }
+        }
+    }
+}

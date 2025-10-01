@@ -1,0 +1,127 @@
+// KB국민은행 직원 업무시스템 - 캘린더 SCSS
+
+// 변수, 함수 import
+@import '../base';
+
+// Django Calendar 스타일
+.django-calendar {
+    font-size: ptr(10px);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    .calendar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: ptr(2px);
+        margin-bottom: ptr(10px);
+        flex: 0 0 auto;
+        
+        .calendar-btn {
+            background: none;
+            border: none;
+            color: $kb-dark;
+            cursor: pointer;
+            padding: ptr(3px);
+            border-radius: ptr(4px);
+            transition: all 0.2s ease;
+            width: ptr(16px);
+            height: ptr(16px);
+            @include flex-center;
+            &:hover {
+                background-color: $kb-yellow;
+                border-radius: 50%;
+            }
+            
+            i {
+                font-size: ptr(8px);
+            }
+        }
+        
+        .calendar-month {
+            font-size: ptr(12px);
+            font-weight: 600;
+            color: $kb-dark;
+            margin: 0;
+        }
+    }
+    
+    .calendar-weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: ptr(0.5px);
+        flex: 0 0 auto;
+        
+        .weekday {
+            text-align: center;
+            font-size: ptr(10px);
+            font-weight: 600;
+            color: $kb-gray;
+            padding: ptr(2px) 0;
+        }
+    }
+    
+    .calendar-days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: ptr(0.5px);
+        margin-bottom: ptr(2px);
+        flex: 1;
+        min-height: 0;
+     
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: ptr(10px);
+            color: $kb-dark !important;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: ptr(10px);
+            min-height: ptr(10px);
+            border-radius: ptr(4px);
+            
+            &:hover {
+                background-color: lighten($kb-yellow, 30%);
+            }
+            
+            &.empty {
+                cursor: default;
+                border: none;
+                
+                &:hover {
+                    background-color: transparent;
+                }
+            }
+            
+            &.today {
+                background-color: $kb-yellow !important;
+                border-color: $kb-yellow !important;
+                
+                .day-number {
+                    color: $kb-dark !important;
+                    font-weight: 700 !important;
+                }
+                
+                &:hover {
+                    background-color: darken($kb-yellow, 10%) !important;
+                }
+            }
+            
+            .day-number {
+                font-weight: 600;
+                font-size: ptr(10px);
+                color: $kb-dark !important;
+                display: block;
+                text-align: center;
+                width: 100%;
+                line-height: 1;
+            }
+            
+        }
+    }
+}
